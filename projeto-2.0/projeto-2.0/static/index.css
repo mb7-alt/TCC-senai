@@ -1,0 +1,104 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+#Entrada-email {
+    position: absolute;
+    font-size: large;
+    color: #ff9500;
+    scale: 250%;
+    bottom: 40%;
+    right: 20%;
+    width: 200px;
+}
+
+#Senha {
+    background-color: rgb(226, 244, 247);
+    border: 1px solid #6a859e;
+
+}
+
+#Email {
+    background-color: rgb(226, 244, 247);
+    border: 1px solid #6a859e;
+}
+
+#Botão {
+    padding: 4%;
+    background-color: #ff9500;
+    color: rgb(53, 52, 52);
+    border: #ffffff;
+    border-radius: 15px;
+    position: absolute;
+    right: 75px;
+}
+
+#logo  {
+    position: absolute;
+    top: 100px;
+    left: 1300px;
+    width: 250px;
+    height: 100px;
+    
+}
+
+#trabalhador {
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    top: 0px;
+    -webkit-mask-image: linear-gradient(to left, transparent 5%, rgb(72, 92, 129) 50%);
+}
+
+#logo-home {
+    width: 125px;
+    height: 50px;
+}
+
+#procurar {
+    background-color: #fdb755 ;
+    border-color: #ff9500;
+    color: #fdb755 ;
+}
+
+nav {
+    font-size: larger;
+}
+
+.navbar-nav .nav-item {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.tabela {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tabela th, 
+.tabela td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.tabela thead th {
+  background-color: #0004ff;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.tabela tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.tabela tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.tabela tbody tr:hover {
+  background-color: #f1f1f1;
+}
