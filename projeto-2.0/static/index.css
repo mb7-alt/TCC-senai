@@ -71,11 +71,8 @@ body {
 
 header {
     background-color: #8eadc5;
-}
-
-.barra-sistemica__links {
-    color: #192a6b !important;
-    font-style: normal !important;
+    margin-bottom: -40px;
+    margin-top: -40px;
 }
 
 nav {
@@ -115,4 +112,18 @@ nav {
 
 .tabela tbody tr:hover {
   background-color: #f1f1f1;
+}
+
+#linksdocabecalho{
+    margin-left: 100px;
+    display: flex; /* Ativa o modo flex */
+    flex: 1;
+    align-items: center;     /* Alinha verticalmente */
+}
+
+#linksbemlocos{
+    width: 50%;
+    margin-left: 100px;
+    justify-content: flex-start; /* Alinha horizontalmente */
+    align-items: center;     /* Alinha verticalmente */
 }
