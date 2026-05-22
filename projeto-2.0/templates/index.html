@@ -13,7 +13,7 @@
     <br>
     <img src="{{ url_for('static', filename='senai.jpg') }}" id="trabalhador" alt="Trabalhador Senai">
     <br>
-    <form>
+    <form id="Entrada-email">
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Usuário</label>
             <input type="email" class="form-control" id="Email" aria-describedby="emailHelp">
@@ -22,7 +22,9 @@
             <label for="exampleInputPassword1" class="form-label">Senha</label>
             <input type="password" class="form-control" id="Senha">
         </div>
-        <button type="submit" class="btn btn-primary" id="Botão">Entrar</button>
+        <a href="/home">
+            <button type="submit" class="btn btn-primary" id="Botão">Entrar</button>
+        </a>
     </form>
 
 </body>

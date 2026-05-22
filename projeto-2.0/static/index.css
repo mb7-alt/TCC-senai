@@ -1,10 +1,9 @@
 body {
-    background-color: #386585;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 
-form {
+#Entrada-email {
     position: absolute;
     font-size: large;
     color: #ff9500;
@@ -49,5 +48,71 @@ form {
     width: 50%;
     position: absolute;
     top: 0px;
-    -webkit-mask-image: linear-gradient(to left, transparent 5%, rgb(72, 92, 129) 50%);
+    mask-image: linear-gradient(to left, transparent 5%, rgb(72, 92, 129) 50%);
+}
+
+#logo-home {
+    width: 125px;
+    height: 50px;
+}
+
+#procurar {
+    background-color: #fdb755 ;
+    border-color: #ff9500;
+    color: #ff9500;
+}
+
+
+.d-flex {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header {
+    background-color: #8eadc5;
+}
+
+.barra-sistemica__links {
+    color: #192a6b !important;
+    font-style: normal !important;
+}
+
+nav {
+    font-size: larger;
+}
+
+.navbar-nav .nav-item {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.tabela {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tabela th, 
+.tabela td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.tabela thead {
+  background-color: #192a6b;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.tabela tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.tabela tbody tr:nth-of-type(odd) {
+  background-color: #f3f3f3;
+}
+
+.tabela tbody tr:hover {
+  background-color: #f1f1f1;
 }
