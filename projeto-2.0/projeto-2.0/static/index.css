@@ -48,7 +48,7 @@ body {
     width: 50%;
     position: absolute;
     top: 0px;
-    -webkit-mask-image: linear-gradient(to left, transparent 5%, rgb(72, 92, 129) 50%);
+    mask-image: linear-gradient(to left, transparent 5%, rgb(72, 92, 129) 50%);
 }
 
 #logo-home {
@@ -59,7 +59,23 @@ body {
 #procurar {
     background-color: #fdb755 ;
     border-color: #ff9500;
-    color: #fdb755 ;
+    color: #ff9500;
+}
+
+
+.d-flex {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header {
+    background-color: #8eadc5;
+}
+
+.barra-sistemica__links {
+    color: #192a6b !important;
+    font-style: normal !important;
 }
 
 nav {
@@ -72,11 +88,9 @@ nav {
 }
 
 .tabela {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: Arial, sans-serif;
-    margin: 20px 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .tabela th, 
@@ -85,8 +99,8 @@ nav {
   text-align: left;
 }
 
-.tabela thead th {
-  background-color: #0004ff;
+.tabela thead {
+  background-color: #192a6b;
   color: #ffffff;
   font-weight: bold;
 }
@@ -95,7 +109,7 @@ nav {
   border-bottom: 1px solid #dddddd;
 }
 
-.tabela tbody tr:nth-of-type(even) {
+.tabela tbody tr:nth-of-type(odd) {
   background-color: #f3f3f3;
 }
 
