@@ -1,4 +1,5 @@
 ---Comandos do terminal: ---
+
 pip install flask
 
 pip install Flask mysql-connector-python
