@@ -54,22 +54,29 @@
             </div>
         </nav>
     </header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Adicionar à lista</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Controle dos itens</a>
-                </li>
-            </div>
-        </div>  
-    </nav>
+    <div class="barra-navegaçao">
+        <nav class="navbar navbar-expand-lg home-nav">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"></li>
+                        <a class="almoxarifado">
+                            <img src="/static/almoxarifado.png" id="imagem-almoxarifado" alt="Logo" width="60" height="50" class="d-inline-block align-text-top">
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Adicionar à lista</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Controle dos itens</a>
+                    </li>
+                </div>
+            </div>  
+        </nav>
+    </div>
     <br>
     <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="procurar itens..." aria-label="Search"/>
