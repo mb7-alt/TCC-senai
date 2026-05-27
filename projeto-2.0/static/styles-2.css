@@ -1,0 +1,85 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#logo-home {
+    width: 125px;
+    height: 50px;
+}
+
+#procurar {
+    background-color: #fdb755 ;
+    border-color: #ff9500;
+    color: #ff9500;
+}
+
+
+.d-flex {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header {
+    background-color: #8eadc5;
+    margin-bottom: -40px;
+    margin-top: -40px;
+}
+
+nav {
+    font-size: larger;
+}
+
+.navbar-nav .nav-item {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.tabela {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tabela th, 
+.tabela td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.tabela thead {
+  background-color: #192a6b;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.tabela tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.tabela tbody tr:nth-of-type(odd) {
+  background-color: #f3f3f3;
+}
+
+.tabela tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+#linksdocabecalho{
+    margin-left: 100px;
+    display: flex;
+    flex: 1;
+    align-items: center;
+}
+
+#linksbemlocos{
+    width: 50%;
+    margin-left: 100px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.barra-sistemica__item {
+    color:#192a6b;
+    margin-left: 25px;
+}
