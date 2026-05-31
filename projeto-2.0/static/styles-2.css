@@ -87,13 +87,23 @@ nav {
 }
 
 
-.navbar-nav .nav-item .nav-link {
+.navbar-nav .nav-item  .nav-link {
     margin-left: 20px;
     margin-right: 20px;
+    font-size: larger;
     color: #ffffff !important;
     font-weight: bold;
 }
 
+.navbar-nav .nav-item-titulo {
+    margin-left: 20px;
+    margin-right: 20px;
+    color: #ffffff;
+    font-weight: bold;
+    margin-right: 100px;
+}
+
 #imagem-almoxarifado {
     filter: invert(100%);
+    scale: 140%;
 }
