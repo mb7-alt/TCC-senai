@@ -73,3 +73,10 @@ h1 {
     top: 0px;
     mask-image: linear-gradient(to left, transparent 5%, rgb(72, 92, 129) 50%);
 }
+
+#imagem-tabela {
+    max-width: 100% ;
+    max-height: 60vh;
+    object-fit: contain;
+    margin: 20px auto;
+}
