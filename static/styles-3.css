@@ -8,9 +8,9 @@ body {
 }
 
 #procurar {
-    background-color: #f3d09e ;
+    background-color: #fdb755;
     border-color: #ff9500;
-    color: #ff9500;
+    color: #ffffff;
 }
 
 
@@ -30,44 +30,172 @@ nav {
     font-size: larger;
 }
 
-.tabela {
-    width: 50%;
+.navbar-nav .nav-item {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.painel-controle {
+    width: 60%;
+    margin: auto;
+    border: 3px solid #192a6b;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: white;
+}
+
+.cabecalho-painel {
+    background-color: #192a6b;
+    color: white;
+    padding: 15px;
+}
+
+.busca-item {
+    padding: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.busca-item input {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #192a6b;
+    border-radius: 5px;
+}
+
+#btnBuscar {
+    background-color: #ff9500;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#detalhesItem {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    padding: 0 20px;
+}
+
+#detalhesItem.ativo {
+    max-height: 2000px;
+    padding: 20px;
+}
+
+.campo {
+    margin-bottom: 20px;
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 8px;
+    color: #192a6b;
+    font-weight: bold;
+}
+
+.campo input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #192a6b;
+    border-radius: 5px;
+}
+
+.controle-quantidade {
+    display: flex;
+    gap: 10px;
+}
+
+.controle-quantidade input {
+    flex: 1;
+}
+
+.btnMais,
+.btnMenos {
+    width: 60px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.btnMais {
+    background-color: #192a6b;
+}
+
+.btnMenos {
+    background-color: #ff9500;
+}
+
+.btnVoltar {
+    float: right;
+    background-color: #ff9500;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+#tabelaHistorico {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#tabelaHistorico th,
+#tabelaHistorico td {
+    border: 1px solid #192a6b;
+    padding: 8px;
+    text-align: left;
+}
+
+#tabelaHistorico thead {
+    background-color: #192a6b;
+    color: white;
+}
+
+#tabelaHistorico {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    max-height: 250px;
+    overflow-y: auto;
+    display: block;
+}
+
+#btnMovimentar {
+    display: block;
+    width: fit-content;
     margin-left: auto;
-    margin-right: auto;
+
+    background-color: #192a6b;
+    color: white;
+
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+
+    font-weight: bold;
+    cursor: pointer;
+
+    transition: 0.2s ease;
 }
 
-.tabela th, 
-.tabela td {
-  padding: 12px 15px;
-  text-align: left;
+#btnMovimentar:hover {
+    background-color: #0f1c4d;
 }
 
-.tabela thead {
-  background-color: #192a6b;
-  color: #ffffff;
-  font-weight: bold;
-}
-
-.tabela tbody tr {
-  border-bottom: 1px solid #dddddd;
-}
-
-.tabela tbody tr:nth-of-type(odd) {
-  background-color: #f3f3f3;
-}
-
-.tabela tbody tr:hover {
-  background-color: #f1f1f1;
-}
-
-#linksdocabecalho{
+#linksdocabecalho {
     margin-left: 100px;
     display: flex;
     flex: 1;
     align-items: center;
 }
 
-#linksbemlocos{
+#linksbemlocos {
     width: 50%;
     margin-left: 100px;
     justify-content: flex-start;
@@ -75,35 +203,6 @@ nav {
 }
 
 .barra-sistemica__item {
-    color:#192a6b;
+    color: #192a6b;
     margin-left: 25px;
-    font-weight: bold;
-    text-decoration: none !important;
-}
-
-.navbar.home-nav {
-    background-color:#192a6b !important;
-    font-size: larger;
-}
-
-
-.navbar-nav .nav-item  .nav-link {
-    margin-left: 20px;
-    margin-right: 20px;
-    font-size: larger;
-    color: #ffffff !important;
-    font-weight: bold;
-}
-
-.navbar-nav .nav-item-titulo {
-    margin-left: 20px;
-    margin-right: 20px;
-    color: #ffffff;
-    font-weight: bold;
-    margin-right: 100px;
-}
-
-#imagem-almoxarifado {
-    filter: invert(100%);
-    scale: 140%;
 }
