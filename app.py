@@ -13,7 +13,8 @@ def home():
         host = 'localhost',
         database = 'almoxarifado',
         user = 'root',
-        password = ''
+        password = '',
+        port = '3307'
     )
     cursor = db.cursor()
     cursor.execute("SELECT * FROM itens")

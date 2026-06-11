@@ -108,9 +108,10 @@ nav {
     scale: 140%;
 }
 
-#botao-imagem {
-    background-color: #ff9500;
+.swal2-confirm {
+    background-color: #192a6b;
+    color: #ff9500;
     border: 2px solid #192a6b;
-    border-radius: 40px;
+    border-radius: 20px;
     padding: 20%;
 }
