@@ -31,12 +31,12 @@ def login():
 
 @app.route('/home')
 def home():
-    db = mysql.connector.connect(
-        host='localhost',
-        database='almoxarifado',
-        user='root',
-        password='',
-        port='3306'
+    db = mysql.connector.connect (
+        host = 'localhost',
+        database = 'almoxarifado',
+        user = 'root',
+        password = '',
+        port = '3307'
     )
     cursor = db.cursor()
     cursor.execute("SELECT * FROM itens")
