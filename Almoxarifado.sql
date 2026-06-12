@@ -16,13 +16,14 @@ ALTER TABLE itens MODIFY COLUMN quantidade INT NOT NULL DEFAULT 0;
 
 -- 2. Cria a tabela de histórico
 CREATE TABLE IF NOT EXISTS historico (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    item_id INT NOT NULL,
-    tipo ENUM('entrada', 'saida') NOT NULL,
-    pessoa VARCHAR(100) NOT NULL,
-    destino VARCHAR(100) NOT NULL,
+    id_historico INT AUTO_INCREMENT PRIMARY KEY,
+    item_id INT,
+    tipo VARCHAR(10) NOT NULL,    
+    quantidade INT NOT NULL,
+    pessoa VARCHAR(100),          
+    destino VARCHAR(100),         
     data_movimentacao DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (item_id) REFERENCES itens(id) ON DELETE CASCADE
+    FOREIGN KEY (item_id) REFERENCES itens(id) 
 );
 
 SELECT * FROM itens;
@@ -41,9 +42,14 @@ CREATE TABLE usuarios (
 email VARCHAR (191) NOT NULL UNIQUE,
 senha VARCHAR (255) NOT NULL,
 tipo ENUM ('admin', 'comum') NOT NULL DEFAULT 'comum'
-)
+);
 
 SELECT * FROM usuarios;
 
 INSERT INTO usuarios (email, senha) VALUES ('ednaldo.admin@gmail.com', 'admin');
 INSERT INTO usuarios (email, senha) VALUES ('ednaldo.comum@gmail.com', 'comum');
+
+-- AJUSTE DE PERMISSÃO (Caso dê erro de autenticação no Flask)
+-- Rodar o comando abaixo se o Python reclamar de 'caching_sha2_password'
+-- ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '1234';
+-- FLUSH PRIVILEGES;
