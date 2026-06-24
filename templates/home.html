@@ -90,7 +90,9 @@
             <tr>
                 <th>ID</th>
                 <th>Ferramenta</th>
+                <th>Preço</th>
                 <th>Quantidade disponível</th>
+                <th>Quentidade miníma</th>
                 <th>Categoria</th>
                 <th>Descrição</th>
                 <th>Imagem</th>
@@ -104,9 +106,11 @@
                 <td>{{ item[2] }}</td>
                 <td>{{ item[3] }}</td>
                 <td>{{ item[4] }}</td>
+                <td>{{ item[5] }}</td>
+                <td>{{ item[5] }}</td>
                 <td> 
                     <button id="botao-imagem" onclick="Swal.fire({
-                        imageUrl: '{{ item[5] }}',
+                        imageUrl: '{{ item[7] }}',
                         imageAlt: 'Imagem-tabela',
                         customClass: {
                             image: 'Imagem-tabela',

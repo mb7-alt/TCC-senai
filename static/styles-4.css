@@ -1,26 +1,125 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+
+#logo-home {
+    width: 125px;
+    height: 50px;
 }
 
-.container {
-    width: 500px;
+#procurar {
+    background-color: #f3d09e ;
+    border-color: #ff9500;
+    color: #ff9500;
+}
+
+
+.d-flex {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header {
+    background-color: #8eadc5;
+    margin-bottom: -40px;
+    margin-top: -40px;
+}
+
+nav {
+    font-size: larger;
+}
+
+#linksdocabecalho{
+    margin-left: 100px;
+    display: flex;
+    flex: 1;
+    align-items: center;
+}
+
+#linksbemlocos{
+    width: 50%;
+    margin-left: 100px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.barra-sistemica__item {
+    color:#192a6b;
+    margin-left: 25px;
+    font-weight: bold;
+    text-decoration: none !important;
+}
+
+.navbar.home-nav {
+    background-color:#192a6b !important;
+    font-size: larger;
+}
+
+
+.navbar-nav .nav-item  .nav-link {
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: larger;
+    color: #ffffff !important;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-item-titulo {
+    margin-left: 20px;
+    margin-right: 20px;
+    color: #ffffff;
+    font-weight: bold;
+    margin-right: 100px;
+}
+
+#imagem-almoxarifado {
+    filter: invert(100%);
+    scale: 140%;
+}
+
+#botao-imagem {
+    background-color: #192a6b;
+    border: 2px solid #ff9500;
+    border-radius: 20px;
+    padding: 20%;
+}
+
+.swal2-confirm {
+    background-color: #192a6b;
+    color: #ff9500;
+    border: 2px solid #192a6b;
+    border-radius: 10px;
+    padding: 50%;
+}
+
+.div-casdastro {
     background-color: white;
-    padding: 30px;
+    padding: 40px;
     border-radius: 15px;
+    margin-left: 100px;
+    margin-right: 100px ;
     border: 2px solid #ccc;
     box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
 }
 
-h1 {
+
+#form-cadastro {
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+#Cad {
     text-align: center;
-    margin-bottom: 25px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-family: Arial, sans-serif;
 }
 
 label {
