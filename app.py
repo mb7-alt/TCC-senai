@@ -36,7 +36,7 @@ def home():
         database = 'almoxarifado',
         user = 'root',
         password = '',
-        port = '3307'
+        port = '3306'
     )
     cursor = db.cursor()
     cursor.execute("SELECT * FROM itens")
