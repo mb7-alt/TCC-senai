@@ -57,8 +57,31 @@ def home():
 def cont():
     return render_template('cont.html')
 
-@app.route('/lista')
+@app.route('/lista', methods=['GET', 'POST'])
 def lista():
+    if request.method == 'POST':
+        nome = request.form['nome']
+        preço = float(request.form['preço'])
+        quantidade = int(request.form['quantidade'])
+        estoque_min = int(request.form['quantidade_min'])
+        categoria = request.form['categoria']
+        descriçao = request.form['descriçao']
+        imagem = request.form['imagem']
+        valores = (nome, preço, quantidade, estoque_min, categoria, descriçao, imagem)
+
+        query = 'INSERT INTO itens (nome, preço, quantidade, estoque_min, categoria, descricao, imagem) VALUES (?, ?, ?, ?, ?, ?, ?);'
+        print(query, (valores))
+
+        '''
+        con_lista = db_conexao()
+        cursor = con_lista.cursor()
+        cursor.execute(query, valores)
+        con_lista.commit()
+        cursor.close()
+        con_lista.close()
+        '''
+        
+
     return render_template('lista.html')
 
 @app.route('/home-admin')

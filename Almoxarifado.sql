@@ -29,5 +29,5 @@ tipo ENUM ('admin', 'comum') NOT NULL DEFAULT 'comum'
 
 SELECT * FROM usuarios;
 
-INSERT INTO usuarios (email, senha, tipo) VALUES ('ednaldo.admin@gmail.com', '1234', 'admin');
-INSERT INTO usuarios (email, senha, tipo) VALUES ('mauricio.comum@gmail.com', 'comum', 'comum');
+INSERT INTO usuarios (email, senha, tipo) VALUES ('ednaldo@gmail.com', '$2a$12$SzNy/xm1UylAEkrJ7NYB5.phFLYgQ8uZfWSYmP2C5L4A1oAUoJZEC', 'admin');
+INSERT INTO usuarios (email, senha, tipo) VALUES ('mauricio@gmail.com', '$2a$12$zCTDAIf1NqfhS0uB/VZ0UeJAjTRxE2heoQ16WN4U82HKMv27ULtwO', 'comum');
