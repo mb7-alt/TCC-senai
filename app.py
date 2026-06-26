@@ -59,6 +59,11 @@ def cont():
 
 @app.route('/lista', methods=['GET', 'POST'])
 def lista():
+    
+    return render_template('lista.html')
+
+@app.route('/sucesso',  methods=['GET', 'POST'])
+def sucesso():
     if request.method == 'POST':
         nome = request.form['nome']
         preço = float(request.form['preço'])
@@ -69,24 +74,49 @@ def lista():
         imagem = request.form['imagem']
         valores = (nome, preço, quantidade, estoque_min, categoria, descriçao, imagem)
 
-        query = 'INSERT INTO itens (nome, preço, quantidade, estoque_min, categoria, descricao, imagem) VALUES (?, ?, ?, ?, ?, ?, ?);'
-        print(query, (valores))
-
-        '''
+        query = 'INSERT INTO itens (nome, preço, quantidade, estoque_min, categoria, descricao, imagem) VALUES (%s, %s, %s, %s, %s, %s, %s);'
         con_lista = db_conexao()
         cursor = con_lista.cursor()
         cursor.execute(query, valores)
         con_lista.commit()
         cursor.close()
         con_lista.close()
-        '''
         
+    return render_template('lista_sucesso.html')
 
-    return render_template('lista.html')
+@app.route('/user-sucesso',  methods=['GET', 'POST'])
+def userSucesso():
+    if request.method == 'POST':
+        email = request.form['email']
+        senha = request.form['senha']
+        tipo = request.form['posto']
+
+        senha_bytes = senha.encode('utf-8')
+        salt = bcrypt.gensalt(rounds=12)
+        senha_hash_bytes = bcrypt.hashpw(senha_bytes, salt)
+        senha_criptografada = senha_hash_bytes.decode('utf-8')
+        usuario = (email, senha_criptografada, tipo)
+
+        query = 'INSERT INTO usuarios (email, senha, tipo) VALUES (%s, %s, %s);'
+        con_user = db_conexao()
+        cursor = con_user.cursor()
+        cursor.execute(query, usuario)
+        con_user.commit()
+        cursor.close()
+        con_user.close()
+        
+    return render_template('user_sucesso.html')
 
 @app.route('/home-admin')
 def admin():
-    return render_template('admin.html')
+    conexao = db_conexao()
+    cursor = conexao.cursor()
+    cursor.execute("SELECT * FROM itens")
+    resultados = cursor.fetchall()
+    cursor.close()
+    conexao.close()
+    
+    return render_template('admin.html', resultados=resultados)
 
 @app.route('/cadastro-de-usuarios')
 def users():

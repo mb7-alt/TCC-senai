@@ -3,9 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/icone2.png">
     <title>Controle de usuários</title>
 </head>
 <body>
-    <h1>Página em construção...</h1>
+    <div class="div-user">
+        <h1 id="Cad">Cadastro de Ferramenta</h1>
+        <form id="form-cadastro" action="/user-sucesso" method="POST">
+            <label>Email do usuário</label>
+            <input type="text" name="email">
+
+            <label>Senha</label>
+            <input type="text" name="senha">
+
+            <label>Admin ou comum?</label>
+            <input type="text" name="posto">
+            <br>
+            <br>
+            <button class="botao" type="submit">
+                Concluído
+            </button>
+        </form>
+    </div>
 </body>
 </html>
