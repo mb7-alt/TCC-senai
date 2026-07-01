@@ -1,7 +1,9 @@
 DROP DATABASE IF EXISTS almoxarifado;
 CREATE DATABASE almoxarifado;
-
 USE almoxarifado;
+
+# CONTEÚDOS DA PÁGINA HOME
+
 CREATE TABLE itens (
 id INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(100),
@@ -37,6 +39,22 @@ INSERT INTO itens (nome, quantidade, categoria, descricao, imagem) VALUES ('Pape
 DROP DATABASE IF EXISTS login;
 CREATE DATABASE login;
 USE login;
+
+# HISTÓRICO DE ITENS PARA A PÁGINA DE CONTROLE DE ITENS
+
+CREATE TABLE historico_movimentacoes (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    item_id INT,
+    tipo ENUM('entrada', 'saida') NOT NULL,
+    quantidade INT NOT NULL,
+    data_movimentacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (item_id) REFERENCES itens(id) ON DELETE CASCADE
+);
+
+ALTER TABLE historico_movimentacoes ADD COLUMN pessoa VARCHAR(100);
+ALTER TABLE historico_movimentacoes ADD COLUMN destino VARCHAR(100);
+
+# USUÁRIOS DO SITE, UTILIZAR NA PÁGINA DE LOGIN
 
 CREATE TABLE usuarios (
 email VARCHAR (191) NOT NULL UNIQUE,
