@@ -55,6 +55,26 @@ def login():
         
 @app.route('/incorreto')
 def erroLogin():
+    if request.method == 'POST':
+        usuario_digitado = request.form['username']
+        senha_digitada = request.form['password']
+        
+        conn_login = db_conexao()
+        cursor = conn_login.cursor(dictionary=True) 
+        cursor.execute("SELECT * FROM usuarios WHERE email = %s", (usuario_digitado,))
+        usuario_encontrado = cursor.fetchone()
+        
+        cursor.close()
+        conn_login.close()
+        
+        if usuario_encontrado and bcrypt.checkpw(senha_digitada.encode('utf-8'), usuario_encontrado['senha'].encode('utf-8')):
+            if usuario_encontrado['tipo'] == 'admin':
+                return redirect('/home-admin')
+            else:
+                return redirect('/home')
+        else:
+            return redirect('/incorreto')
+                
     return render_template('login_incorreto.html')
 
 @app.route('/home')
@@ -170,9 +190,12 @@ def sucesso():
 @app.route('/user-sucesso',  methods=['GET', 'POST'])
 def userSucesso():
     if request.method == 'POST':
-        email = request.form['email']
-        senha = request.form['senha']
-        tipo = request.form['posto']
+        email = request.form['email'].strip()
+        senha = request.form['senha'].strip()
+        tipo = request.form['posto'].strip()
+
+        if not email or not senha:
+            return "Por favor, preencha todos os campos antes de enviar!", 400
 
         senha_bytes = senha.encode('utf-8')
         salt = bcrypt.gensalt(rounds=12)
