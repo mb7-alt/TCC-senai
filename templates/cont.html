@@ -158,152 +158,123 @@
                     <tbody></tbody>
                 </table>
             </div>
-            <button type="button" class="btnVoltar" id="btnVoltar" onclick="window.location.href='/home'">
-                Voltar
-            </button>
-
         </div>
 
     </div>
-
     <script>
-        // Removido o DOMContentLoaded que estava gerando redundância e travando o clique
-        let quantidadeMudanca = 0;
-        let quantidadeAtualEmEstoque = 0;
+        let quantidadeAtual = 0;
+        let tipoMovimentacao = ''; 
 
-        async function pesquisarItem() {
-            console.log("Função pesquisarItem iniciada.");
+        document.addEventListener('DOMContentLoaded', function() {
 
-            const itemId = document.getElementById("idItem").value;
-            if (!itemId) {
-                alert("Por favor, digite o ID do item.");
-                return;
-            }
-
-            try {
-                const response = await fetch(`/buscar_item/${itemId}`);
-                const dados = await response.json();
-
-                if (!response.ok) {
-                    alert(dados.erro || "Erro ao buscar item.");
+            document.getElementById('btnBuscar').addEventListener('click', function() {
+                const id = document.getElementById('idItem').value;
+                if (!id) {
+                    Swal.fire('Aviso', 'Digite um ID válido.', 'warning');
                     return;
                 }
 
-                console.log("Dados recebidos com sucesso do servidor:", dados);
+                console.log("Buscando ID:", id);
 
-                // --- TESTE DE DEFESA DOS IDS ---
-                const campoNome = document.getElementById("nomeItem");
-                const campoQtd = document.getElementById("quantidadeItem");
-                const divDetalhes = document.getElementById("detalhesItem");
+                fetch(`/api/item/${id}`)
+                    .then(response => {
+                        console.log("Status da resposta da Rede:", response.status);
+                        if (!response.ok) throw new Error('Item não encontrado');
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log("Dados recebidos do MySQL:", data); 
 
-                if (!campoNome) console.error("ERRO: O elemento com id='nomeItem' não existe no seu HTML!");
-                if (!campoQtd) console.error("ERRO: O elemento com id='quantidadeItem' não existe no seu HTML!");
-                if (!divDetalhes) console.error("ERRO: O elemento com id='detalhesItem' não existe no seu HTML!");
+                        document.getElementById('nomeItem').value = data.nome;
+                        document.getElementById('quantidadeItem').value = data.quantidade;
+                        quantidadeAtual = parseInt(data.quantidade);
+                        tipoMovimentacao = ''; 
 
-                // Preenche se existirem
-                if (campoNome) campoNome.value = dados.item.nome;
-                if (campoQtd) campoQtd.value = dados.item.quantidade;
+                        const painelDetalhes = document.getElementById('detalhesItem');
+                        if (painelDetalhes) {
+                            painelDetalhes.style.display = 'block'; 
+                        }
 
-                // Ativa a animação do CSS
-                if (divDetalhes) {
-                    divDetalhes.classList.add("ativo");
-                    // FORÇA BRUTA: Se o CSS falhar, o JS força a altura direto no elemento!
-                    divDetalhes.style.maxHeight = "2000px";
-                    divDetalhes.style.padding = "20px";
-                    console.log("Classe 'ativo' adicionada à div detalhesItem!");
-                }
+                        const tbody = document.querySelector('#tabelaHistorico tbody');
+                        if (tbody) {
+                            tbody.innerHTML = '';
+                            
+                            if (data.historico && data.historico.length > 0) {
+                                data.historico.forEach(hist => {
+                                    tbody.innerHTML += `
+                                        <tr>
+                                            <td><span class="badge ${hist.tipo === 'Entrada' ? 'bg-success' : 'bg-danger'}">${hist.tipo}</span></td>
+                                            <td>${hist.pessoa}</td>
+                                            <td>${hist.destino}</td>
+                                            <td>${hist.data}</td>
+                                        </tr>`;
+                                });
+                            } else {
+                                tbody.innerHTML = `<tr><td colspan="4" class="text-center text-muted">Nenhuma movimentação registrada para este item.</td></tr>`;
+                            }
+                        }
+                    })
+                    .catch(err => {
+                        console.error("Erro no processamento do Fetch:", err);
+                        Swal.fire('Erro', 'Item não encontrado no sistema.', 'error');
+                    });
+            });
 
-                quantidadeAtualEmEstoque = dados.item.quantidade;
-                quantidadeMudanca = 0;
+            document.querySelector('.btnMais').addEventListener('click', function() {
+                quantidadeAtual += 1;
+                document.getElementById('quantidadeItem').value = quantidadeAtual;
+                tipoMovimentacao = 'Entrada';
+            });
 
-                // Renderiza a tabela de histórico
-                const tabelaBody = document.querySelector("#tabelaHistorico tbody");
-                if (tabelaBody) {
-                    tabelaBody.innerHTML = "";
-                    if (!dados.historico || dados.historico.length === 0) {
-                        tabelaBody.innerHTML = `<tr><td colspan="5" class="text-center text-muted">Nenhuma movimentação registrada.</td></tr>`;
-                    } else {
-                        dados.historico.forEach(mov => {
-                            tabelaBody.innerHTML += `
-                        <tr>
-                            <td><span class="badge ${mov.tipo === 'entrada' ? 'bg-success' : 'bg-danger'}">${mov.tipo.toUpperCase()}</span></td>
-                            <td>${mov.pessoa || 'Não informada'}</td>
-                            <td>${mov.destino || 'Não informado'}</td>
-                            <td>${mov.data}</td>
-                        </tr>
-                    `;
-                        });
-                    }
+            document.querySelector('.btnMenos').addEventListener('click', function() {
+                if (quantidadeAtual > 0) {
+                    quantidadeAtual -= 1;
+                    document.getElementById('quantidadeItem').value = quantidadeAtual;
+                    tipoMovimentacao = 'Saída';
                 } else {
-                    console.error("ERRO: Não encontrei a tabela com id='tabelaHistorico' ou seu tbody!");
+                    Swal.fire('Aviso', 'A quantidade não pode ser menor que a quantidade disponível.', 'warning');
+                }
+            });
+
+            document.getElementById('btnMovimentar').addEventListener('click', function() {
+                const id = document.getElementById('idItem').value;
+                const pessoa = document.getElementById('pessoaMov').value;
+                const destino = document.getElementById('destinoMov').value;
+
+                if (!id || !pessoa || !destino || tipoMovimentacao === '') {
+                    Swal.fire('Aviso', 'Altere a quantidade e preencha todos os campos.', 'warning');
+                    return;
                 }
 
-            } catch (erro) {
-                console.error("Erro detalhado no processamento:", erro);
-            }
-        }
+                const dadosMov = {
+                    id: id,
+                    quantidade: quantidadeAtual,
+                    pessoa: pessoa,
+                    destino: destino,
+                    tipo: tipoMovimentacao
+                };
 
-        function alterarQuantidadeDigitada(valor) {
-            const inputQtd = document.getElementById("quantidadeItem");
-            quantidadeMudanca += valor;
-            inputQtd.value = quantidadeAtualEmEstoque + quantityMudanca;
-        }
-
-        async function registrarMovimentacao() {
-            const itemId = document.getElementById("idItem").value;
-            const pessoa = document.getElementById("pessoaMov").value;
-            const destino = document.getElementById("destinoMov").value;
-
-            if (quantidadeMudanca === 0) {
-                alert("Use os botões + ou - para alterar a quantidade antes de registrar.");
-                return;
-            }
-
-            const tipoMov = quantidadeMudanca > 0 ? "entrada" : "saida";
-            const qtdAbsoluta = Math.abs(quantidadeMudanca);
-
-            const dadosMov = {
-                item_id: itemId,
-                tipo: tipoMov,
-                quantidade: qtdAbsoluta,
-                pessoa: pessoa,
-                destino: destino
-            };
-
-            try {
-                const response = await fetch('/registrar_movimentacao', {
+                fetch('/api/movimentar', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(dadosMov)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.sucesso) {
+                        Swal.fire('Sucesso!', 'Movimentação gravada', 'success');
+                        document.getElementById('btnBuscar').click();
+                        document.getElementById('pessoaMov').value = '';
+                        document.getElementById('destinoMov').value = '';
+                    } else {
+                        Swal.fire('Erro', 'Erro ao salvar: ' + data.erro, 'error');
+                    }
                 });
-
-                const resultado = await response.json();
-
-                if (response.ok) {
-                    alert(resultado.mensagem);
-                    document.getElementById("pessoaMov").value = "";
-                    document.getElementById("destinoMov").value = "";
-                    pesquisarItem();
-                } else {
-                    alert(resultado.erro);
-                }
-
-            } catch (erro) {
-                console.error("Erro ao registrar:", erro);
-            }
-        }
-
-        // Faz o botão voltar fechar o painel de detalhes na tela de forma suave
-        document.getElementById("btnVoltar").onclick = function () {
-            const divDetalhes = document.getElementById("detalhesItem");
-            if (divDetalhes) {
-                divDetalhes.classList.remove("ativo");
-                divDetalhes.style.maxHeight = "0"; // Zera a altura no clique do voltar
-                divDetalhes.style.padding = "0 20px";
-            }
-            document.getElementById("idItem").value = "";
-        };
+            });
+        });
     </script>
+</body>
+</html>
 </body>
 
 </html>

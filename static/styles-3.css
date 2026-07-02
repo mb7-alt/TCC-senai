@@ -146,10 +146,8 @@ nav {
 }
 
 #detalhesItem {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease;
-    padding: 0 20px;
+    display: flexbox;
+    padding: 20px;
 }
 
 #detalhesItem.ativo {

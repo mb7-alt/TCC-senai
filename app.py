@@ -33,75 +33,70 @@ def home():
 
 @app.route('/controle-de-itens')
 def cont():
-    return render_template('cont.html', active_page='Controle dos itens')
+    return render_template('cont.html')
+    
+# 1. ROTA PARA BUSCAR O ITEM (GET)
+@app.route('/api/item/<int:id_item>', methods=['GET'])
+def buscar_item(id_item):
+    conexao = db_conexao()
+    cursor = conexao.cursor(dictionary=True)
+    
+    # Busca o nome e quantidade do item baseado no seu ID
+    cursor.execute("SELECT nome, quantidade FROM itens WHERE id = %s", (id_item,))
+    item = cursor.fetchone()
+    
+    if not item:
+        cursor.close()
+        conexao.close()
+        return jsonify({'erro': 'Item não encontrado'}), 404
+        
+    # Busca o histórico de movimentações desse item
+    cursor.execute(
+        "SELECT tipo, pessoa, destino, DATE_FORMAT(data, '%d/%m/%Y %H:%i') as data FROM historico WHERE id_item = %s ORDER BY data DESC", 
+        (id_item,)
+    )
+    historico = cursor.fetchall()
+    
+    cursor.close()
+    conexao.close()
+    
+    return jsonify({
+        'nome': item['nome'],
+        'quantidade': item['quantidade'],
+        'historico': historico
+    })
 
-# # ROTA: Buscar item pelo ID e trazer o histórico dele
-# @app.route('/buscar_item/<int:item_id>', methods=['GET'])
-# def buscar_item(item_id):
-#     conexao = db_conexao()
-#     cursor = conexao.cursor(dictionary=True)
-
-#     try:
-#         # Busca os dados do item
-#         cursor.execute("SELECT id, nome, quantidade, categoria, imagem FROM itens WHERE id = %s", (item_id,))
-#         item = cursor.fetchone()
-
-#         if not item:
-#             return jsonify({"erro": "Item não encontrado no almoxarifado."}), 404
-#         cursor.execute("""
-#             SELECT tipo, quantidade, pessoa, destino, DATE_FORMAT(data_movimentacao, '%d/%m/%Y %H:%i') as data 
-#             FROM historico_movimentacoes 
-#             WHERE item_id = %s 
-#             ORDER BY data_movimentacao DESC
-#         """, (item_id,))
-#         historico = cursor.fetchall()
-
-#         return jsonify({
-#             "item": item,
-#             "historico": historico
-#         }), 200
-
-#     except mysql.connector.Error as erro:
-#         return jsonify({"erro": str(erro)}), 500
-#     finally:
-#         cursor.close()
-#         conexao.close()
-
-# # ROTA: Registrar a movimentação (Entrada/Saída) e atualizar a tabela 'itens'
-# @app.route('/registrar_movimentacao', methods=['POST'])
-# def registrar_movimentacao():
-#     dados = request.json
-#     item_id = dados.get('item_id')
-#     tipo = dados.get('tipo') 
-#     qtd_movimentada = int(dados.get('quantidade'))
-#     pessoa = dados.get('pessoa')    # Recebendo do JS
-#     destino = dados.get('destino')  # Recebendo do JS
-
-#     conexao = db_conexao()
-#     cursor = conexao.cursor()
-
-#     try:
-#         # 1. Salva o registro no histórico salvando pessoa e destino também!
-#         cursor.execute(
-#             "INSERT INTO historico_movimentacoes (item_id, tipo, quantidade, pessoa, destino) VALUES (%s, %s, %s, %s, %s)",
-#             (item_id, tipo, qtd_movimentada, pessoa, destino)
-#         )
-
-#         # 2. Atualiza a coluna 'quantidade' da tabela 'itens'
-#         if tipo == 'entrada':
-#             cursor.execute("UPDATE itens SET quantidade = quantidade + %s WHERE id = %s", (qtd_movimentada, item_id))
-#         elif tipo == 'saida':
-#             cursor.execute("UPDATE itens SET quantidade = quantidade - %s WHERE id = %s", (qtd_movimentada, item_id))
-
-#         conexao.commit()
-#         return jsonify({"mensagem": "Movimentação registrada e estoque atualizado!"}), 200
-
-#     except mysql.connector.Error as erro:
-#         conexao.rollback()
-#         return jsonify({"erro": str(erro)}), 500
-#     finally:
-#         cursor.close()
-#         conexao.close()
+# 2. ROTA PARA REGISTRAR A MOVIMENTAÇÃO (POST)
+@app.route('/api/movimentar', methods=['POST'])
+def movimentar_item():
+    dados = request.json
+    id_item = dados.get('id')
+    quantidade_nova = dados.get('quantidade')
+    pessoa = dados.get('pessoa')
+    destino = dados.get('destino')
+    tipo = dados.get('tipo') # 'Entrada' ou 'Saída'
+    
+    conexao = db_conexao()
+    cursor = conexao.cursor()
+    
+    try:
+        # 1. Atualiza a quantidade atual na sua tabela 'itens'
+        cursor.execute("UPDATE itens SET quantidade = %s WHERE id = %s", (quantidade_nova, id_item))
+        
+        # 2. Registra quem levou/trouxe, para onde e quando na tabela 'historico'
+        query_hist = "INSERT INTO historico (id_item, tipo, pessoa, destino, data) VALUES (%s, %s, %s, %s, NOW())"
+        cursor.execute(query_hist, (id_item, tipo, pessoa, destino))
+        
+        conexao.commit()
+        resposta = {'sucesso': True}
+    except Exception as e:
+        conexao.rollback()
+        resposta = {'sucesso': False, 'erro': str(e)}
+    finally:
+        cursor.close()
+        conexao.close()
+        
+    return jsonify(resposta)
 
 @app.route('/lista', methods=['GET', 'POST'])
 def lista():
