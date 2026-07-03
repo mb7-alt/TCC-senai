@@ -192,7 +192,7 @@ def userSucesso():
     if request.method == 'POST':
         email = request.form['email'].strip()
         senha = request.form['senha'].strip()
-        tipo = request.form['posto'].strip()
+        tipo = request.form['posto'].strip().lower()
 
         if not email or not senha:
             return "Por favor, preencha todos os campos antes de enviar!", 400

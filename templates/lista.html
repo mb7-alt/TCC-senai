@@ -80,32 +80,41 @@
             </nav>
         </div>
         <div class="div-cadastro">
-            <h1 id="Cad">Cadastro de Ferramenta</h1>
             <form id="form-cadastro" action="/sucesso" method="POST">
-                <label>Nome da Ferramenta</label>
-                <input type="text" name="nome" placeholder="Digite o nome da ferramenta..." required>
-
-                <label>Preço</label>
-                <input type="text" name="preço" placeholder="Digite seu preço. Ex: 3.14, 2.15..." required>
-
-                <label>Quantidade</label>
-                <input type="number" name="quantidade" min="1" step="1" placeholder="Digite a quantidade..." required>
-
-                <label>Quantidade mínima</label>
-                <input type="number" name="quantidade_min" min="1" step="1" placeholder="Digite a quantidade mínima que deve estar dísponivel..." required>
-
-                <label>Categoria</label>
-                <input type="text" name="categoria" placeholder="Ex: elétrica, mecânica, geral..." required>
-
-                <label>Descrição</label>
-                <textarea name="descriçao" placeholder="Descreva a ferramenta..." required></textarea>
-
-                <label>Enviar Imagem da Ferramenta</label>
-                <input type="text" name="imagem" placeholder="Digite a URL da imagem..." required>
-                <br><br>
-                <button class="botao" type="submit">
-                    Concluído
-                </button>
+                <h1 id="Cad">Cadastro de Ferramenta</h1>
+                <div class="item-cad">
+                    <label>Nome da Ferramenta</label>
+                    <input type="text" name="nome" placeholder="Digite o nome da ferramenta..." required>
+                </div>
+                <div class="item-cad">
+                    <label>Preço</label>
+                    <input type="text" name="preço" placeholder="Digite seu preço. Ex: 3.14, 2.15..." required>
+                </div>
+                <div class="item-cad">
+                    <label>Quantidade</label>
+                    <input type="number" name="quantidade" min="1" step="1" placeholder="Digite a quantidade..." required>
+                </div>
+                <div class="item-cad">
+                    <label>Quantidade mínima</label>
+                    <input type="number" name="quantidade_min" min="1" step="1" placeholder="Digite a quantidade mínima que deve estar dísponivel..." required>
+                </div>
+                <div class="item-cad">
+                    <label>Categoria</label>
+                    <input type="text" name="categoria" placeholder="Ex: elétrica, mecânica, geral..." required>
+                </div>
+                <div class="item-cad">
+                    <label>Descrição</label>
+                    <textarea name="descriçao" placeholder="Descreva a ferramenta..." required></textarea>
+                </div>
+                <div class="item-cad">
+                    <label>Enviar Imagem da Ferramenta</label>
+                    <input type="url" name="imagem" placeholder="Digite a URL da imagem..." required>
+                </div>
+                <div>
+                    <button id="botao-cad" type="submit">
+                        Concluído
+                    </button>
+                </div>
             </form>
         </div>
     </body>
