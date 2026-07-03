@@ -111,7 +111,7 @@
             <h2>Procurar item</h2>
         </div>
         <div class="busca-item">
-            <input type="number" id="idItem" placeholder="Digite o ID do item">
+            <input type="number" id="idItem" placeholder="Digite o ID do item..." required>
             <button id="btnBuscar">
                 Buscar
             </button>
@@ -119,23 +119,23 @@
         <div id="detalhesItem">
             <div class="campo">
                 <label>Nome</label>
-                <input type="text" id="nomeItem" readonly>
+                <input type="text" id="nomeItem" placeholder="Esse campo será completo automaticamente..." readonly>
             </div>
             <div class="campo quantidade-area">
                 <label>Quantidade</label>
                 <div class="controle-quantidade">
-                    <input type="number" id="quantidadeItem" readonly>
+                    <input type="number" id="quantidadeItem" placeholder="Esse campo será completo automaticamente..." readonly>
                     <button type="button" class="btnMais">+</button>
                     <button type="button" class="btnMenos">−</button>
                 </div>
             </div>
             <div class="campo">
                 <label>Pessoa</label>
-                <input type="text" id="pessoaMov">
+                <input type="text" id="pessoaMov" placeholder="Qual o colaborador que pegou o item?" required>
             </div>
             <div class="campo">
                 <label>Destino</label>
-                <input type="text" id="destinoMov">
+                <input type="text" id="destinoMov" placeholder="Para onde o item foi?" required>
             </div>
             <button type="button" id="btnMovimentar">
                 Registrar movimentação
