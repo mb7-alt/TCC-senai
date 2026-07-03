@@ -146,9 +146,7 @@ nav {
 }
 
 #detalhesItem {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease;
+    display:flexbox;
     padding: 0 20px;
 }
 

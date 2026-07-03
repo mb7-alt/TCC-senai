@@ -21,6 +21,18 @@ INSERT INTO itens (nome, preço, quantidade, estoque_min, categoria, descricao, 
 INSERT INTO itens (nome, preço, quantidade, estoque_min, categoria, descricao, imagem) VALUES ('Engasga gato', 0.35, 90, 50, 'Reparos', 'Prender itens', 'https://http2.mlstatic.com/D_Q_NP_2X_994821-MLA96708828317_102025-T.webp');
 INSERT INTO itens (nome, preço, quantidade, estoque_min, categoria, descricao, imagem) VALUES ('Papel', 10.00, 67, 150, 'Geral', 'Utilitário', 'https://images.tcdn.com.br/img/img_prod/1173379/papel_cartao_ap_40_120_grs_1x50_a4_18170_2_5e035952ca9a7a15cb6df56c8a82803a.jpg');
 
+-- CONTEÚDOS DA PÁGINA DE CONTROLE DE ITENS
+CREATE TABLE historico (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_item INT,
+    tipo VARCHAR(50),
+    pessoa VARCHAR(255),
+    destino VARCHAR(255),
+    data DATETIME,
+    FOREIGN KEY (id_item) REFERENCES itens(id) ON DELETE CASCADE
+);
+
+-- USUÁRIOS DA PÁGINA DE LOGIN
 CREATE TABLE usuarios (
 email VARCHAR (200) NOT NULL UNIQUE,
 senha VARCHAR (200) NOT NULL,
