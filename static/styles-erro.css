@@ -22,7 +22,6 @@ h1 {
     position: absolute;
 }
 
-/* Container que centraliza o miolo do login na tela */
 .container-login {
     width: 100%;
     max-width: 400px;
@@ -56,33 +55,35 @@ h1 {
     margin: 20px auto;
 }
 
-/* ==========================================================================
-   2. LOGO DO SESI CENTRALIZADA E TOTALMENTE BRANCA
-   ========================================================================== */
 #logo  {
     display: block;
-    margin: 0 auto 30px auto; /* Mantém centralizado e afasta dos inputs */
+    margin: 0 auto 30px auto;
     width: 250px;
     height: auto;
-    
-    /* O TRUQUE PARA DEIXAR A FOTO 100% BRANCA: */
     filter: brightness(0) invert(1); 
 }
 
-/* ==========================================================================
-   3. ESTILIZAÇÃO DAS ABAS DE INPUT (Modernas e Limpas)
-   ========================================================================== */
+@keyframes mudarBorda {
+    from {
+      border-color: #ff0000;
+      border-radius: 10px;
+    }
+    to {
+      border-color: #6a859e;
+      border-radius: 2px;
+    }
+  }
+
 .input-customizado {
     background-color: rgb(226, 244, 247) !important;
-    border: 2px solid #6a859e !important;
+    animation: mudarBorda 4s ease forwards; 
     border-radius: 10px !important;    
     padding: 12px 15px !important;     
     font-size: 16px !important;
     color: #333333 !important;
-    transition: all 0.3s ease !important;
+    transition: all 1s ease !important;
 }
 
-/* Efeito ao focar/clicar para digitar na aba */
 .input-customizado:focus {
     background-color: #ffffff !important;
     border-color: #ff9500 !important;   
@@ -90,19 +91,17 @@ h1 {
     outline: none !important;
 }
 
-/* ==========================================================================
-   4. TEXTOS EM BRANCO (Mantidos)
-   ========================================================================== */
+
 .label-customizada {
     display: block;
     text-align: left;
     font-weight: 600;
     font-size: 15px;
-    color: #ffffff !important; /* Mantém "E-mail" e "Senha" em branco */
+    color: #ffffff !important;
     margin-bottom: 8px;
 }
 
 .texto-check {
     font-size: 14px;
-    color: #ffffff !important; /* Mantém "Lembrar de mim" em branco */
+    color: #ffffff !important;
 }
