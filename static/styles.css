@@ -1,5 +1,6 @@
+/*CSS da página de login*/
 
-body {
+.corpo-login {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     justify-content: center;
@@ -18,11 +19,6 @@ body {
     background-attachment: fixed;   
 }
 
-h1 {
-    position: absolute;
-}
-
-/* Container que centraliza o miolo do login na tela */
 .container-login {
     width: 100%;
     max-width: 400px;
@@ -56,22 +52,14 @@ h1 {
     margin: 20px auto;
 }
 
-/* ==========================================================================
-   2. LOGO DO SESI CENTRALIZADA E TOTALMENTE BRANCA
-   ========================================================================== */
 #logo  {
     display: block;
-    margin: 0 auto 30px auto; /* Mantém centralizado e afasta dos inputs */
+    margin: 0 auto 30px auto;
     width: 250px;
     height: auto;
-    
-    /* O TRUQUE PARA DEIXAR A FOTO 100% BRANCA: */
     filter: brightness(0) invert(1); 
 }
 
-/* ==========================================================================
-   3. ESTILIZAÇÃO DAS ABAS DE INPUT (Modernas e Limpas)
-   ========================================================================== */
 .input-customizado {
     background-color: rgb(226, 244, 247) !important;
     border: 2px solid #6a859e !important;
@@ -82,7 +70,6 @@ h1 {
     transition: all 0.3s ease !important;
 }
 
-/* Efeito ao focar/clicar para digitar na aba */
 .input-customizado:focus {
     background-color: #ffffff !important;
     border-color: #ff9500 !important;   
@@ -90,19 +77,465 @@ h1 {
     outline: none !important;
 }
 
-/* ==========================================================================
-   4. TEXTOS EM BRANCO (Mantidos)
-   ========================================================================== */
 .label-customizada {
     display: block;
     text-align: left;
     font-weight: 600;
     font-size: 15px;
-    color: #ffffff !important; /* Mantém "E-mail" e "Senha" em branco */
+    color: #ffffff !important;
     margin-bottom: 8px;
 }
 
 .texto-check {
     font-size: 14px;
-    color: #ffffff !important; /* Mantém "Lembrar de mim" em branco */
+    color: #ffffff !important;
+}
+
+/*CSS da página de login incorreta*/
+
+@keyframes mudarBorda {
+    from {
+      border-color: #ff0000;
+      border-radius: 10px;
+    }
+    to {
+      border-color: #6a859e;
+      border-radius: 2px;
+    }
+  }
+
+.input-customizado-incorreto {
+    background-color: rgb(226, 244, 247) !important;
+    animation: mudarBorda 4s ease forwards; 
+    border-radius: 10px !important;    
+    padding: 12px 15px !important;     
+    font-size: 16px !important;
+    color: #333333 !important;
+    transition: all 1s ease !important;
+}
+
+/*CSS da Navbar padrão das páginas*/
+
+.body-padrao {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.d-flex {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header {
+    background-color: #8eadc5;
+    margin-bottom: -40px;
+    margin-top: -40px;
+}
+
+nav {
+    font-size: larger;
+}
+
+#linksdocabecalho{
+    margin-left: 100px;
+    display: flex;
+    flex: 1;
+    align-items: center;
+}
+
+#linksbemlocos{
+    width: 50%;
+    margin-left: 100px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.barra-sistemica__item {
+    color:#192a6b;
+    margin-left: 25px;
+    font-weight: bold;
+    text-decoration: none !important;
+}
+
+.navbar.home-nav {
+    background-color:#192a6b !important;
+    font-size: larger;
+}
+
+
+.navbar-nav .nav-item  .nav-link {
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: larger;
+    color: #ffffff !important;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-item-titulo {
+    margin-left: 20px;
+    margin-right: 20px;
+    color: #ffffff;
+    font-weight: bold;
+    margin-right: 100px;
+}
+
+#imagem-almoxarifado {
+    filter: invert(100%);
+    scale: 140%;
+}
+
+/*CSS das tabelas do home e admin*/
+
+#procurar {
+    background-color: #f3d09e ;
+    border-color: #ff9500;
+    color: #ff9500;
+}
+
+.tabela {
+    width: 70%;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    border: 4px solid #192a6b;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.tabela th, 
+.tabela td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.tabela thead {
+  background-color: #192a6b;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.tabela tr:first-child th:first-child {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.tabela tbody tr:nth-of-type(odd) {
+  background-color: #f3f3f3;
+}
+
+.tabela tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+
+#botao-imagem {
+    background-color: #192a6b;
+    border: 1px solid #ff9500;
+    border-radius: 20px;
+    padding: 20%;
+}
+
+.Imagem-botao {
+    background-color: #192a6b;
+    color: #ff9500;
+    border: 2px solid #192a6b;
+    border-radius: 10px;
+    padding: 50%;
+}
+
+.imagem-popup {
+    border: 2px solid #192a6b;
+}
+
+.Imagem-tabela {
+    max-height: 400px;
+}
+
+/*CSS do controle de itens*/
+
+.painel-controle {
+    width: 60%;
+    margin: auto;
+    border: 3px solid #192a6b;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: white;
+}
+
+.cabecalho-painel {
+    background-color: #192a6b;
+    color: white;
+    padding: 15px;
+}
+
+.busca-item {
+    padding: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.busca-item input {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #192a6b;
+    border-radius: 5px;
+}
+
+#btnBuscar {
+    background-color: #ff9500;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#detalhesItem {
+    display:flexbox;
+    padding: 0 20px;
+}
+
+#detalhesItem.ativo {
+    max-height: 2000px;
+    padding: 20px;
+}
+
+.campo {
+    margin-bottom: 20px;
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 8px;
+    color: #192a6b;
+    font-weight: bold;
+}
+
+.campo input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #192a6b;
+    border-radius: 5px;
+}
+
+.controle-quantidade {
+    display: flex;
+    gap: 10px;
+}
+
+.controle-quantidade input {
+    flex: 1;
+}
+
+.btnMais,
+.btnMenos {
+    width: 60px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.btnMais {
+    background-color: #192a6b;
+}
+
+.btnMenos {
+    background-color: #ff9500;
+}
+
+.btnVoltar {
+    float: right;
+    background-color: #ff9500;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+#tabelaHistorico {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#tabelaHistorico th,
+#tabelaHistorico td {
+    border: 1px solid #192a6b;
+    padding: 8px;
+    text-align: left;
+}
+
+#tabelaHistorico thead {
+    background-color: #192a6b;
+    color: white;
+}
+
+#tabelaHistorico {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    max-height: 250px;
+    overflow-y: auto;
+    display: block;
+}
+
+#btnMovimentar {
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+
+    background-color: #192a6b;
+    color: white;
+
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+
+    font-weight: bold;
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+#btnMovimentar:hover {
+    background-color: #0f1c4d;
+}
+
+/*CSS utilizado tanto no cadastro de usários quanto de ferramentas*/
+label {
+    font-weight: bold;
+}
+
+select,
+input,
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    border: 2px solid #192a6b;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+
+textarea {
+    height: 80px;
+    resize: none;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/*CSS do cadastro de ferramenta*/
+
+#form-cadastro {
+    background-color: white;
+    border-radius: 15px;
+    border: 4px solid #192a6b;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+    display: flexbox;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2%;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+#Cad {
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 40px;
+    background-color: #192a6b;
+    padding-bottom: 1%;
+}
+
+.item-cad {
+    margin-bottom: 1%;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+
+#botao-cad {
+    width: 98%;
+    background-color: #ff9500;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-bottom: 1%;
+}
+
+#botao-cad:hover {
+    background-color: #ffb144;
+}
+
+/*CSS do cadastro de usuários*/
+
+#form-cadastro-user {
+    background-color: white;
+    border-radius: 15px;
+    border: 4px solid #192a6b;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+    display: flexbox;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8%;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+#Cad-user {
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 40px;
+    background-color: #192a6b;
+    padding-bottom: 1%;
+}
+
+.item-cad-user {
+    margin-bottom: 3%;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 2%;
+}
+
+#botao-cad-user {
+    width: 98%;
+    background-color: #ff9500;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+}
+
+#botao-cad-user:hover {
+    background-color: #ffb144;
 }

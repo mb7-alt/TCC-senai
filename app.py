@@ -109,10 +109,7 @@ def buscar_item(id_item):
         'historico': historico
     })
 
- 
-
 # 2. ROTA PARA REGISTRAR A MOVIMENTAÇÃO (POST)
-
 @app.route('/api/movimentar', methods=['POST'])
 
 def movimentar_item():
