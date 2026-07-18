@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/styles-2.css">
+    <link rel="icon" href="/static/icone2.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -90,7 +91,9 @@
             <tr>
                 <th>ID</th>
                 <th>Ferramenta</th>
+                <th>Preço</th>
                 <th>Quantidade disponível</th>
+                <th>Quantidade mínima</th>
                 <th>Categoria</th>
                 <th>Descrição</th>
                 <th>Imagem</th>
@@ -101,15 +104,18 @@
             <tr>
                 <td>{{ item[0] }}</td>
                 <td>{{ item[1] }}</td>
-                <td>{{ item[2] }}</td>
+                <td>R${{ item[2] }}</td>
                 <td>{{ item[3] }}</td>
                 <td>{{ item[4] }}</td>
+                <td>{{ item[5] }}</td>
+                <td>{{ item[6] }}</td>
                 <td> 
                     <button id="botao-imagem" onclick="Swal.fire({
-                        imageUrl: '{{ item[5] }}',
+                        imageUrl: '{{ item[7] }}',
                         imageAlt: 'Imagem-tabela',
                         customClass: {
-                            image: 'Imagem-tabela' 
+                            image: 'Imagem-tabela',
+                            confirmButton: 'Imagem-botao'
                         },
                         buttonsStyling: false
                     });">

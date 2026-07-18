@@ -102,11 +102,9 @@
     </div>
     <br>
     <div class="painel-controle">
-
         <div class="cabecalho-painel">
             <h2>Procurar item</h2>
         </div>
-
         <div class="busca-item">
             <input type="number" id="idItem" placeholder="Digite o ID do item">
             <button id="btnBuscar" onclick="pesquisarItem()">
@@ -118,22 +116,18 @@
                 <label>Nome</label>
                 <input type="text" id="nomeItem" readonly>
             </div>
-
             <div class="campo quantidade-area">
                 <label>Quantidade</label>
-
                 <div class="controle-quantidade">
                     <input type="number" id="quantidadeItem" readonly>
                     <button type="button" class="btnMais" onclick="alterarQuantidadeDigitada(1)">+</button>
                     <button type="button" class="btnMenos" onclick="alterarQuantidadeDigitada(-1)">−</button>
                 </div>
             </div>
-
             <div class="campo">
                 <label>Pessoa</label>
                 <input type="text" id="pessoaMov">
             </div>
-
             <div class="campo">
                 <label>Destino</label>
                 <input type="text" id="destinoMov">
@@ -141,10 +135,8 @@
             <button type="button" id="btnMovimentar" onclick="registrarMovimentacao()">
                 Registrar movimentação
             </button>
-
             <div id="historicoItem" class="campo">
                 <label>Histórico do Item</label>
-
                 <table id="tabelaHistorico">
                     <thead>
                         <tr>
@@ -154,12 +146,10 @@
                             <th>Data</th>
                         </tr>
                     </thead>
-
                     <tbody></tbody>
                 </table>
             </div>
         </div>
-
     </div>
     <script>
         let quantidadeAtual = 0;
