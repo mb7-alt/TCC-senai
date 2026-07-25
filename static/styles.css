@@ -1,4 +1,6 @@
-/*CSS da página de login*/
+/*==========================================================================================
+CSS da página de login
+==========================================================================================*/
 
 .corpo-login {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -26,13 +28,13 @@
     text-align: center;
 }
 
-#Botão {
+.botao {
     width: 100%;
     padding: 4%;
     background-color: #ff9500;
     color: rgb(53, 52, 52);
-    border: none !important;
-    border-radius: 15px !important;
+    border: none;
+    border-radius: 15px;
     font-weight: bold;
     cursor: pointer;
 }
@@ -61,13 +63,13 @@
 }
 
 .input-customizado {
-    background-color: rgb(226, 244, 247) !important;
-    border: 2px solid #6a859e !important;
-    border-radius: 10px !important;    
-    padding: 12px 15px !important;     
-    font-size: 16px !important;
-    color: #333333 !important;
-    transition: all 0.3s ease !important;
+    background-color: rgb(226, 244, 247);
+    border: 2px solid #6a859e;
+    border-radius: 10px;    
+    padding: 12px 15px;     
+    font-size: 16px;
+    color: #333333;
+    transition: all 0.3s ease;
 }
 
 .input-customizado:focus {
@@ -91,30 +93,36 @@
     color: #ffffff !important;
 }
 
-/*CSS da página de login incorreta*/
+/*==========================================================================================
+CSS da página de login incorreta
+==========================================================================================*/
 
-@keyframes mudarBorda {
-    from {
-      border-color: #ff0000;
-      border-radius: 10px;
+@keyframes mudarcor-input {
+    0% {
+        background-color: #f4d7d7;
+        border-color: #ff0000;
     }
-    to {
-      border-color: #6a859e;
-      border-radius: 2px;
+    100% {
+        background-color: rgb(226, 244, 247);
+        border-color: #6a859e;
     }
-  }
-
-.input-customizado-incorreto {
-    background-color: rgb(226, 244, 247) !important;
-    animation: mudarBorda 4s ease forwards; 
-    border-radius: 10px !important;    
-    padding: 12px 15px !important;     
-    font-size: 16px !important;
-    color: #333333 !important;
-    transition: all 1s ease !important;
 }
 
-/*CSS da Navbar padrão das páginas*/
+#incorreto-email, #incorreto-senha { 
+    animation: mudarcor-input 10s ease;
+}
+
+#incorreto:focus {
+    background-color: #ffffff !important;
+    border-color: #ff9500 !important;   
+    box-shadow: 0 0 8px rgba(255, 149, 0, 0.4) !important; 
+    outline: none !important;
+}
+
+
+/*==========================================================================================
+CSS da Navbar padrão das páginas
+==========================================================================================*/
 
 .body-padrao {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -136,14 +144,14 @@ nav {
     font-size: larger;
 }
 
-#linksdocabecalho{
+#links-do-cabecalho{
     margin-left: 100px;
     display: flex;
     flex: 1;
     align-items: center;
 }
 
-#linksbemlocos{
+#links-sistemicos{
     width: 50%;
     margin-left: 100px;
     justify-content: flex-start;
@@ -184,7 +192,9 @@ nav {
     scale: 140%;
 }
 
-/*CSS das tabelas do home e admin*/
+/*==========================================================================================
+CSS das tabelas do home e admin
+==========================================================================================*/
 
 #procurar {
     background-color: #f3d09e ;
@@ -217,19 +227,12 @@ nav {
   font-weight: bold;
 }
 
-.tabela tr:first-child th:first-child {
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-}
-
 .tabela tbody tr:nth-of-type(odd) {
   background-color: #f3f3f3;
 }
 
 .tabela tbody tr:hover {
-  background-color: #f1f1f1;
+  background-color: #cad4f7;
 }
 
 
@@ -248,15 +251,17 @@ nav {
     padding: 50%;
 }
 
-.imagem-popup {
-    border: 2px solid #192a6b;
+.Imagem-popup {
+    border: 2px solid #192a6b; 
 }
 
 .Imagem-tabela {
     max-height: 400px;
 }
 
-/*CSS do controle de itens*/
+/*==========================================================================================
+CSS do controle de itens
+==========================================================================================*/
 
 .painel-controle {
     width: 60%;
@@ -409,7 +414,10 @@ nav {
     background-color: #0f1c4d;
 }
 
-/*CSS utilizado tanto no cadastro de usários quanto de ferramentas*/
+/*==========================================================================================
+CSS utilizado como base do cadastro de usário, cadastro de ferramentas e controle de itens
+==========================================================================================*/
+
 label {
     font-weight: bold;
 }
@@ -436,7 +444,9 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-/*CSS do cadastro de ferramenta*/
+/*==========================================================================================
+CSS do cadastro de ferramenta
+==========================================================================================*/
 
 #form-cadastro {
     background-color: white;
@@ -449,6 +459,7 @@ input[type=number] {
     margin-top: 2%;
     margin-left: 30%;
     margin-right: 30%;
+    margin-bottom: 1%;
 }
 
 #Cad {
@@ -488,7 +499,9 @@ input[type=number] {
     background-color: #ffb144;
 }
 
-/*CSS do cadastro de usuários*/
+/*==========================================================================================
+CSS do cadastro de usuários
+==========================================================================================*/
 
 #form-cadastro-user {
     background-color: white;
@@ -538,4 +551,70 @@ input[type=number] {
 
 #botao-cad-user:hover {
     background-color: #ffb144;
+}
+
+/*==========================================================================================
+CSS do controle de itens
+==========================================================================================*/
+
+.painel-controle {
+    margin-bottom: 1%;
+}
+
+.cabecalho-painel {
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+/*==========================================================================================
+CSS das páginas de sucesso
+==========================================================================================*/
+
+.corpo-sucesso {
+    background-color: #ffffff;
+    display: flexbox;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.botao-sucesso-voltar {
+    background-color: #ff9500;
+    border: 4px solid #0f1c4d;
+    box-shadow: 2px 2px 2px #030e36;
+    font-size: larger;
+    font-weight: bold;
+    color: #f3f3f3;
+    border-radius: 20px;
+    width: 400px;
+    height: 100px;
+    margin-left: 16%;
+    cursor: pointer;
+
+}
+
+.link-sucesso {
+    text-decoration: none;
+}
+
+#logo-sucesso {
+    position: absolute;
+    width: 200px;
+    height: auto;
+    bottom: 4%;
+    right: 3%;
+}
+
+#h1-sucesso {
+    margin-left: 27%;
+    margin-top: 7%;
+    margin-bottom: 10%;
+    font-size: 60px;
+}
+
+#h1-sucesso-2 {
+    margin-left: 25%;
+    margin-top: 7%;
+    margin-bottom: 10%;
+    font-size: 60px;
 }

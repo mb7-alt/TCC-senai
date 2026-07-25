@@ -10,7 +10,7 @@ def db_conexao():
         database = 'almoxarifado',
         user = 'root',
         password = '',
-        port = '3307'
+        port = '3306'
     )
      return conexao
 
