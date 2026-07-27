@@ -119,7 +119,6 @@ CSS da página de login incorreta
     outline: none !important;
 }
 
-
 /*==========================================================================================
 CSS da Navbar padrão das páginas
 ==========================================================================================*/
@@ -169,7 +168,6 @@ nav {
     background-color:#192a6b !important;
     font-size: larger;
 }
-
 
 .navbar-nav .nav-item  .nav-link {
     margin-left: 20px;
