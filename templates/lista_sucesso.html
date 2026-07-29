@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/static/icone3.png">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='icone3.png') }}">
+
     <title>Sucesso!</title>
 </head>
-<body>
-    <h1>O item já foi adicionado!!!</h1>
-    <a href="/home">
-        <button>Voltar à home</button>
+<body class="corpo-sucesso">
+    <h1 id="h1-sucesso">O item já foi adicionado!!!</h1>
+    <a href="/home" class="link-sucesso">
+        <button class="botao-sucesso-voltar">Voltar à home</button>
     </a>
-    <a href="/lista">
-        <button>Voltar ao cadastro da ferramenta</button>
+    <a href="/lista" class="link-sucesso">
+        <button class="botao-sucesso-voltar">Voltar ao cadastro da ferramenta</button>
     </a>
+    <img id="logo-sucesso" src="{{ url_for('static', filename='logo.png') }}">
 </body>
 </html>
