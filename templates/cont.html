@@ -152,103 +152,99 @@
         </div>
     </div>
     <script>
-        let quantidadeAtual = 0;
-        let tipoMovimentacao = ''; 
-
-        document.addEventListener('DOMContentLoaded', function() {
-
-            document.getElementById('btnBuscar').addEventListener('click', function() {
-                const id = document.getElementById('idItem').value;
-                if (!id) {
-                    Swal.fire('Aviso', 'Digite um ID válido.', 'warning');
-                    return;
-                }
-
-                console.log("Buscando ID:", id);
-
-                fetch(`/api/item/${id}`)
-                    .then(response => {
-                        console.log("Status da resposta da Rede:", response.status);
-                        if (!response.ok) throw new Error('Item não encontrado');
-                        return response.json();
-                    })
-                    .then(data => {
-                        console.log("Dados recebidos do MySQL:", data); 
-
-                        document.getElementById('nomeItem').value = data.nome;
-                        document.getElementById('quantidadeItem').value = data.quantidade;
-                        quantidadeAtual = parseInt(data.quantidade);
-                        tipoMovimentacao = ''; 
-
-                        const painelDetalhes = document.getElementById('detalhesItem');
-                        if (painelDetalhes) {
-                            painelDetalhes.style.display = 'block'; 
-                        }
-
-                        const tbody = document.querySelector('#tabelaHistorico tbody');
-                        if (tbody) {
-                            tbody.innerHTML = '';
-                            
-                            if (data.historico && data.historico.length > 0) {
-                                data.historico.forEach(hist => {
-                                    tbody.innerHTML += `
-                                        <tr>
-                                            <td><span class="badge ${hist.tipo === 'Entrada' ? 'bg-success' : 'bg-danger'}">${hist.tipo}</span></td>
-                                            <td>${hist.pessoa}</td>
-                                            <td>${hist.destino}</td>
-                                            <td>${hist.data}</td>
-                                        </tr>`;
-                                });
-                            } else {
-                                tbody.innerHTML = `<tr><td colspan="4" class="text-center text-muted">Nenhuma movimentação registrada para este item.</td></tr>`;
-                            }
-                        }
-                    })
-                    .catch(err => {
-                        console.error("Erro no processamento do Fetch:", err);
-                        Swal.fire('Erro', 'Item não encontrado no sistema.', 'error');
-                    });
-            });
-
-            document.querySelector('.btnMais').addEventListener('click', function() {
-                quantidadeAtual += 1;
-                document.getElementById('quantidadeItem').value = quantidadeAtual;
-                tipoMovimentacao = 'Entrada';
-            });
-
-            document.querySelector('.btnMenos').addEventListener('click', function() {
-                if (quantidadeAtual > 0) {
-                    quantidadeAtual -= 1;
-                    document.getElementById('quantidadeItem').value = quantidadeAtual;
-                    tipoMovimentacao = 'Saída';
-                } else {
-                    Swal.fire('Aviso', 'A quantidade não pode ser menor que a quantidade disponível.', 'warning');
-                }
-            });
-
-            document.getElementById('btnMovimentar').addEventListener('click', function() {
-                const id = document.getElementById('idItem').value;
-                const pessoa = document.getElementById('pessoaMov').value;
-                const destino = document.getElementById('destinoMov').value;
-
-                if (!id || !pessoa || !destino || tipoMovimentacao === '') {
-                    Swal.fire('Aviso', 'Altere a quantidade e preencha todos os campos.', 'warning');
-                    return;
-                }
-
-                const dadosMov = {
-                    id: id,
-                    quantidade: quantidadeAtual,
-                    pessoa: pessoa,
-                    destino: destino,
-                    tipo: tipoMovimentacao
-                };
-
-                fetch('/api/movimentar', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(dadosMov)
+    let quantidadeAtual = 0;
+    let estoqueMin = 0;
+    let tipoMovimentacao = '';
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('btnBuscar').addEventListener('click', function() {
+            const id = document.getElementById('idItem').value;
+            if (!id) {
+                Swal.fire('Aviso', 'Digite um ID válido.', 'warning');
+                return;
+            }
+            console.log("Buscando ID:", id);
+            fetch(`/api/item/${id}`)
+                .then(response => {
+                    console.log("Status da resposta da Rede:", response.status);
+                    if (!response.ok) throw new Error('Item não encontrado');
+                    return response.json();
                 })
+                .then(data => {
+                    console.log("Dados recebidos do MySQL:", data);
+                    document.getElementById('nomeItem').value = data.nome;
+                    document.getElementById('quantidadeItem').value = data.quantidade;
+                    quantidadeAtual = parseInt(data.quantidade);
+                    estoqueMin = parseInt(data.estoque_min || 0);
+                    tipoMovimentacao = '';
+                    const painelDetalhes = document.getElementById('detalhesItem');
+                    if (painelDetalhes) {
+                        painelDetalhes.style.display = 'block';
+                    }
+                    const tbody = document.querySelector('#tabelaHistorico tbody');
+                    if (tbody) {
+                        tbody.innerHTML = '';
+                        if (data.historico && data.historico.length > 0) {
+                            data.historico.forEach(hist => {
+                                tbody.innerHTML += `
+                                    <tr>
+                                        <td><span class="badge ${hist.tipo === 'Entrada' ? 'bg-success' : 'bg-danger'}">${hist.tipo}</span></td>
+                                        <td>${hist.pessoa}</td>
+                                        <td>${hist.destino}</td>
+                                        <td>${hist.data}</td>
+                                    </tr>`;
+                            });
+                        } else {
+                            tbody.innerHTML = `<tr><td colspan="4" class="text-center text-muted">Nenhuma movimentação registrada para este item.</td></tr>`;
+                        }
+                    }
+                })
+                .catch(err => {
+                    console.error("Erro no processamento do Fetch:", err);
+                    Swal.fire('Erro', 'Item não encontrado no sistema.', 'error');
+                });
+        });
+        document.querySelector('.btnMais').addEventListener('click', function () {
+            quantidadeAtual += 1;
+            document.getElementById('quantidadeItem').value = quantidadeAtual;
+            tipoMovimentacao = 'Entrada';
+        });
+        document.querySelector('.btnMenos').addEventListener('click', function () {
+            if ((quantidadeAtual - 1) < estoqueMin) {
+                Swal.fire('Ação Negada', `A quantidade não pode ficar abaixo do estoque mínimo permitido (${estoqueMin}).`, 'warning');
+                return;
+            }
+            if (quantidadeAtual > 0) {
+                quantidadeAtual -= 1;
+                document.getElementById('quantidadeItem').value = quantidadeAtual;
+                tipoMovimentacao = 'Saída';
+            } else {
+                Swal.fire('Aviso', 'A quantidade não pode ser menor que zero.', 'warning');
+            }
+        });
+        document.getElementById('btnMovimentar').addEventListener('click', function () {
+            const id = document.getElementById('idItem').value;
+            const pessoa = document.getElementById('pessoaMov').value;
+            const destino = document.getElementById('destinoMov').value;
+            if (!id || !pessoa || !destino || tipoMovimentacao === '') {
+                Swal.fire('Aviso', 'Altere a quantidade e preencha todos os campos.', 'warning');
+                return;
+            }
+            if (tipoMovimentacao === 'Saída' && quantidadeAtual < estoqueMin) {
+                Swal.fire('Erro', 'A quantidade final é menor que o estoque mínimo.', 'error');
+                return;
+            }
+            const dadosMov = {
+                id: id,
+                quantidade: quantidadeAtual,
+                pessoa: pessoa,
+                destino: destino,
+                tipo: tipoMovimentacao
+            };
+            fetch('/api/movimentar', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dadosMov)
+            })
                 .then(res => res.json())
                 .then(data => {
                     if (data.sucesso) {
@@ -260,9 +256,9 @@
                         Swal.fire('Erro', 'Erro ao salvar: ' + data.erro, 'error');
                     }
                 });
-            });
         });
-    </script>
+    });
+</script>
 </body>
 </html>
 </body>

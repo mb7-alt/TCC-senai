@@ -14,6 +14,7 @@ def db_conexao():
     )
      return conexao
 
+#---PÁGINAS DE NAVEGAÇÃO---#
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     return render_template('index.html', titulo="Página de login")
@@ -27,7 +28,7 @@ def home():
         password = '',
         auth_plugin='mysql_native_password'
     )
-     return conexao
+    return conexao
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -88,26 +89,35 @@ def home():
     
     return render_template('home.html', resultados=resultados)
 
+@app.route('/home-admin')
+def admin():
+    conexao = db_conexao()
+    cursor = conexao.cursor()
+    cursor.execute("SELECT * FROM itens")
+    resultados = cursor.fetchall()
+    cursor.close()
+    conexao.close()
+    
+    return render_template('admin.html', resultados=resultados)
+
+#---PÁGINA DE CONTROLE DE ITENS---#
 @app.route('/controle-de-itens')
 def cont():
     return render_template('cont.html')
-    
-# 1. ROTA PARA BUSCAR O ITEM (GET)
+
 @app.route('/api/item/<int:id_item>', methods=['GET'])
 def buscar_item(id_item):
     conexao = db_conexao()
     cursor = conexao.cursor(dictionary=True)
-    
-    # Busca o nome e quantidade do item baseado no seu ID
-    cursor.execute("SELECT nome, quantidade FROM itens WHERE id = %s", (id_item,))
+
+    cursor.execute("SELECT nome, quantidade, estoque_min FROM itens WHERE id = %s", (id_item,))
     item = cursor.fetchone()
     
     if not item:
         cursor.close()
         conexao.close()
-        return jsonify({'erro': 'Item não encontrado'}), 404
-        
-    # Busca o histórico de movimentações desse item
+        return jsonify({'erro': 'Item não encontrado'}), 404     
+
     cursor.execute(
         "SELECT tipo, pessoa, destino, DATE_FORMAT(data, '%d/%m/%Y %H:%i') as data FROM historico WHERE id_item = %s ORDER BY data DESC", 
         (id_item,)
@@ -120,10 +130,10 @@ def buscar_item(id_item):
     return jsonify({
         'nome': item['nome'],
         'quantidade': item['quantidade'],
+        'estoque_min': item['estoque_min'],
         'historico': historico
     })
 
-# 2. ROTA PARA REGISTRAR A MOVIMENTAÇÃO (POST)
 @app.route('/api/movimentar', methods=['POST'])
 def movimentar_item():
     dados = request.json
@@ -131,16 +141,13 @@ def movimentar_item():
     quantidade_nova = dados.get('quantidade')
     pessoa = dados.get('pessoa')
     destino = dados.get('destino')
-    tipo = dados.get('tipo') # 'Entrada' ou 'Saída'
-    
+    tipo = dados.get('tipo')
+
     conexao = db_conexao()
     cursor = conexao.cursor()
     
     try:
-        # 1. Atualiza a quantidade atual na sua tabela 'itens'
         cursor.execute("UPDATE itens SET quantidade = %s WHERE id = %s", (quantidade_nova, id_item))
-        
-        # 2. Registra quem levou/trouxe, para onde e quando na tabela 'historico'
         query_hist = "INSERT INTO historico (id_item, tipo, pessoa, destino, data) VALUES (%s, %s, %s, %s, NOW())"
         cursor.execute(query_hist, (id_item, tipo, pessoa, destino))
         
@@ -155,6 +162,7 @@ def movimentar_item():
         
     return jsonify(resposta)
 
+#---PÁGINA DE ADICIONAR ITENS À LISTA---#
 @app.route('/lista', methods=['GET', 'POST'])
 def lista():
     
@@ -182,6 +190,7 @@ def sucesso():
         
     return render_template('lista_sucesso.html')
 
+#---PÁGINA DE ADICIONAR USUÁRIOS---#
 @app.route('/user-sucesso',  methods=['GET', 'POST'])
 def userSucesso():
     if request.method == 'POST':
@@ -207,17 +216,6 @@ def userSucesso():
         con_user.close()
         
     return render_template('user_sucesso.html')
-
-@app.route('/home-admin')
-def admin():
-    conexao = db_conexao()
-    cursor = conexao.cursor()
-    cursor.execute("SELECT * FROM itens")
-    resultados = cursor.fetchall()
-    cursor.close()
-    conexao.close()
-    
-    return render_template('admin.html', resultados=resultados)
 
 @app.route('/cadastro-de-usuarios')
 def users():
