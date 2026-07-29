@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <link rel="icon" href="/static/icone3.png">
+    <link rel="icon" href="{{ url_for('static', filename='icone3.png') }}">
+
     <title>Sucesso!</title>
 </head>
 <body class="corpo-sucesso">
@@ -15,6 +17,6 @@
     <a href="/lista" class="link-sucesso">
         <button class="botao-sucesso-voltar">Voltar ao cadastro da ferramenta</button>
     </a>
-    <img id="logo-sucesso" src="/static/logo.png">
+    <img id="logo-sucesso" src="{{ url_for('static', filename='logo.png') }}">
 </body>
 </html>

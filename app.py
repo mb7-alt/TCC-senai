@@ -154,13 +154,13 @@ def lista():
 def sucesso():
     if request.method == 'POST':
         nome = request.form['nome']
-        preço = float(request.form['preço'])
+        preco = float(request.form['preco'])
         quantidade = int(request.form['quantidade'])
         estoque_min = int(request.form['quantidade_min'])
         categoria = request.form['categoria']
-        descriçao = request.form['descriçao']
+        descricao = request.form['descricao']
         imagem = request.form['imagem']
-        valores = (nome, preço, quantidade, estoque_min, categoria, descriçao, imagem)
+        valores = (nome, preco, quantidade, estoque_min, categoria, descricao, imagem)
 
         query = 'INSERT INTO itens (nome, preço, quantidade, estoque_min, categoria, descricao, imagem) VALUES (%s, %s, %s, %s, %s, %s, %s);'
         con_lista = db_conexao()
