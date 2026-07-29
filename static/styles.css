@@ -299,13 +299,13 @@ CSS do controle de itens
 }
 
 #detalhesItem {
-    display:flexbox;
-    padding: 0 20px;
+    display: flexbox;
+    padding: 20px;
 }
 
 #detalhesItem.ativo {
-    max-height: 2000px;
-    padding: 20px;
+    max-height: 2000px !important;
+    padding: 20px !important;
 }
 
 .campo {
