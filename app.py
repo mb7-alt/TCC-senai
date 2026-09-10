@@ -1,33 +1,47 @@
-from flask import Flask, render_template, redirect, request, jsonify, session, url_for
+from flask import Flask, redirect, url_for, request, render_template, session, jsonify
+from flask_cors import CORS
+from flask_jwt_extended import JWTManager
+from datetime import timedelta
 import mysql.connector
 import bcrypt
-from functools import wraps
 
-app = Flask(__name__)
-app.secret_key = '12345'
-
+# Função simulada de conexão com o banco de dados (ajuste conforme seu projeto)
 def db_conexao():
     return mysql.connector.connect(
         host='localhost',
         database='almoxarifado',
         user='root',
         password='',
-        port='3307'
+        port='3306'
     )
 
+# Decorator simulado de login_required (ajuste conforme seu projeto)
 def login_required(tipo_permitido=None):
     def decorator(f):
-        @wraps(f)
-        def decorated_function(*args, **kwargs):
-            if 'usuario_id' not in session:
-                return redirect(url_for('login'))
-            if tipo_permitido and session.get('usuario_tipo') != tipo_permitido:
-                return redirect(url_for('home'))
+        def wrapped(*args, **kwargs):
             return f(*args, **kwargs)
-        return decorated_function
+        return wrapped
     return decorator
 
-#---PÁGINAS DE LOGIN---#
+app = Flask(__name__)
+app.secret_key = '12345'
+
+# Configurações do JWT (Usado na API)
+app.config["JWT_SECRET_KEY"] = "sua-chave-secreta-mobile-123"
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(days=7)
+
+jwt = JWTManager(app)
+CORS(app)  # Permite chamadas do React Native
+
+# Registro dos Blueprints
+# (Caso web_bp e api_bp já contenham rotas, cuidado para não duplicar rotas principais)
+try:
+    from web.routes import web_bp
+    from api.routes import api_bp
+    app.register_blueprint(web_bp)  # Rotas Web (ex: /login, /home)
+    app.register_blueprint(api_bp)  # Rotas da API (ex: /api/login, /api/itens)
+except ImportError:
+    pass
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -67,45 +81,20 @@ def logout():
 def incorreto():
     return render_template('login_incorreto.html')
 
-#---PÁGINAS DE NAVEGAÇÃO---#
+# --- PÁGINAS DE NAVEGAÇÃO --- #
 
 @app.route('/home')
 @login_required()
 def home():
-<<<<<<< HEAD
-    db = mysql.connector.connect (
-        host = 'localhost',
-        database = 'almoxarifado',
-        user = 'root',
-        password = '',
-        port = '3306'
-    )
-    cursor = db.cursor()
-    cursor.execute("SELECT * FROM itens")
-    resultados = cursor.fetchall()
-    cursor.close()
-    db.close()
-    
-    return render_template('home.html', active_page='Home', resultados=resultados)
-
-@app.route('/controle-de-itens')
-def cont():
-    return render_template('cont.html', active_page='Controle dos itens')
-
-@app.route('/lista')
-def lista():
-    return render_template('lista.html', titulo="Adicionar à lista")
-=======
     conexao = db_conexao()
     cursor = conexao.cursor()
     try:
         cursor.execute("SELECT * FROM itens")
         resultados = cursor.fetchall()
-        return render_template('home.html', resultados=resultados)
+        return render_template('home.html', active_page='Home', resultados=resultados)
     finally:
         cursor.close()
         conexao.close()
->>>>>>> main
 
 @app.route('/home-admin')
 @login_required(tipo_permitido='admin')
@@ -120,12 +109,12 @@ def admin():
         cursor.close()
         conexao.close()
 
-#---PÁGINA DE CONTROLE DE ITENS---#
+# --- PÁGINA DE CONTROLE DE ITENS --- #
 
 @app.route('/controle-de-itens')
 @login_required()
 def controle():
-    return render_template('cont.html')
+    return render_template('cont.html', active_page='Controle dos itens')
 
 @app.route('/api/item/<int:id_item>', methods=['GET'])
 @login_required()
@@ -138,7 +127,7 @@ def api_buscar_item(id_item):
         item = cursor.fetchone()
 
         if not item:
-            return jsonify({'erro': 'Item não encontrado'}), 404     
+            return jsonify({'erro': 'Item não encontrado'}), 404    
 
         cursor.execute(
             "SELECT tipo, pessoa, destino, DATE_FORMAT(data, '%d/%m/%Y %H:%i') as data FROM historico WHERE id_item = %s ORDER BY data DESC", 
@@ -185,12 +174,12 @@ def movimentar_item():
 
     return jsonify(resposta)
 
-#---PÁGINA DE ADICIONAR ITENS À LISTA---#
+# --- PÁGINA DE ADICIONAR ITENS À LISTA --- #
 
 @app.route('/lista')
 @login_required()
 def lista():
-    return render_template('lista.html')
+    return render_template('lista.html', titulo="Adicionar à lista")
 
 @app.route('/lista-sucesso', methods=['GET', 'POST'])
 @login_required()
@@ -205,7 +194,7 @@ def listaSucesso():
         imagem = request.form['imagem']
 
         item = (nome, preco, quantidade, estoque_min, categoria, descricao, imagem)
-        query = 'INSERT INTO itens (nome, preço, quantidade, estoque_min, categoria, descricao, imagem) VALUES (%s, %s, %s, %s, %s, %s, %s);'
+        query = 'INSERT INTO itens (nome, preco, quantidade, estoque_min, categoria, descricao, imagem) VALUES (%s, %s, %s, %s, %s, %s, %s);'
         
         con = db_conexao()
         cursor = con.cursor()
@@ -218,7 +207,7 @@ def listaSucesso():
         
     return render_template('lista_sucesso.html')
 
-#---PÁGINA DE ADICIONAR USUÁRIOS---#
+# --- PÁGINA DE ADICIONAR USUÁRIOS --- #
 
 @app.route('/cadastro-de-usuarios')
 @login_required(tipo_permitido='admin')
@@ -254,5 +243,10 @@ def userSucesso():
         
     return render_template('user_sucesso.html')
 
+# Redirecionamento da raiz / para o login web
+@app.route('/')
+def index():
+    return redirect(url_for('login'))
+
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)
