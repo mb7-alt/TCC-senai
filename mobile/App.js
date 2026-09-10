@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
+//PÁGINA DE LOGIN
 export default function AtualizaEstoque() {
   const [email, setItem] = useState('');
   const [senha, setQtde] = useState('');
@@ -34,6 +35,31 @@ export default function AtualizaEstoque() {
   );
 }
 
+//PÁGINA DO ESTOQUE (HOME)
+export function Home() { 
+
+  const pegarTabela = async () => {
+     const [itens] = await fetch('http://10.154.20.83:5000/api/itens', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  const [dados] = await itens.json();
+  setDados(dados);
+  };
+
+
+  return (
+    <View style={styles.container}>
+      <Text>
+        {dados}
+      </Text>
+    </View>
+  );
+}
+
+//CSS (BEM PARECIDO PELO MENOS)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
