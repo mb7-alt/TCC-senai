@@ -10,7 +10,6 @@ export function Home() {
   const [descriçao, setDescriçao] = useState('');
   const [imagem, setImagem] = useState('');
 
-
   const pegarTabela = async () => {
     try{
         const resposta = await fetch('http://10.154.20.83:5000/api/itens', {
@@ -32,4 +31,15 @@ export function Home() {
       </Text>
     </View>
   );
+
+  const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 20,
+    padding: 20,
+  },
+  });
 }
