@@ -1,6 +1,7 @@
 services:
 
   api:
+    image: flask-almox:1.0
     build: .
     ports:
     - "5000:5000"
@@ -8,11 +9,19 @@ services:
     - db
 
   db:
-   image: mysql:8.0
-   environment:
-     MYSQL_DATABASE: almox
-     MYSQL_ROOT_PASSWORD: "mysql_root"
-   ports:
-     - "3306:3306"
-   volumes:
-     - ./banco.sql:/docker-entrypoint-initdb.d/banco.sql
+    image: mysql:8.0
+    container_name: mysql_server
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: senha_secreta_root
+      MYSQL_DATABASE: meu_banco_de_dados
+    ports:
+      - "3306:3306"
+    volumes:
+      # Mapeia seu arquivo local "init.sql" para a pasta de auto-execução
+      - ./Almoxarifado.sql:/docker-entrypoint-initdb.d/init.sql
+      # Mapeia os dados do MySQL para persistência
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
