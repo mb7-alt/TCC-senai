@@ -1,5 +1,4 @@
-//PÁGINA DE LOGIN
-export default function AtualizaEstoque() {
+export function entrar() {
   const [email, setItem] = useState('');
   const [senha, setQtde] = useState('');
 
