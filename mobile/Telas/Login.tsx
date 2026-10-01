@@ -10,6 +10,19 @@ export function Login() {
       justifyContent: 'center',
       margin: 20,
       padding: 20,
+      fontFamily: 'Segoe UI',
+    },
+
+    senai: {
+      fontSize: 50,
+      fontWeight: 'bold',
+      color: '#192a6b'
+    },
+
+    almoxarifado: {
+      fontSize: 30,
+      color: '#ff9500',
+      fontWeight: 'bold',
     },
 
     texto: {
@@ -20,7 +33,6 @@ export function Login() {
       borderRadius: 10,
       margin: 10,
       fontSize: 15,
-      fontFamily: 'Segoe UI',
       paddingHorizontal: 10,
     },
 
@@ -36,7 +48,6 @@ export function Login() {
       paddingHorizontal: 40,
       paddingVertical: 12,
       fontSize: 18,
-      fontFamily: 'Segoe UI',
     }
   });
   
@@ -55,6 +66,12 @@ export function Login() {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.senai}>
+        SENAI
+      </Text>
+      <Text style={styles.almoxarifado}>
+        Almoxarifado
+      </Text>
       <TextInput
         style={styles.texto}
         placeholder="Digite seu e-mail"
