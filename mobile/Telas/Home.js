@@ -12,7 +12,7 @@ export function Home() {
 
   const pegarTabela = async () => {
     try{
-        const resposta = await fetch('http://10.154.20.83:5000/api/itens', {
+        const resposta = await fetch('http://10.154.20.34:5000/api/itens', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

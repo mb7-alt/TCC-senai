@@ -24,6 +24,14 @@ npx expo start
 
 5. Usar o QR CODE ou URL no celular para acessar o site
 
+--USO DO CONTAINER DOCKER (FAÇA ISSO TODO DIA, RODE ESSES COMANDOS TODO SANTO DIA)--
+
+1. Criação da imagem docker
+docker build -t flask-almox:1.0 .
+
+2. Upload da imagem
+docker compose up
+
 --ATENÇÃO--
 
 Verificar se está na porta correta para uso do site, 3307 ou 3306 (boa sorte, campeão)
