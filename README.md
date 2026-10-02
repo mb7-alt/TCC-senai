@@ -13,7 +13,7 @@ pip install -r requirements.txt
 1. Entrar na pasta "mobile":
 cd mobile
 
-2. Instalar o "node_modules" (consequência de um pequeno imprevisto que nos assombrará até o final):
+2. Instalar o "node_modules" (github n tanka o node modules aparentemente):
 npm install expo
 
 3. Expor vulnerabilidades (do expo):
@@ -26,10 +26,11 @@ npx expo start
 
 --USO DO CONTAINER DOCKER (FAÇA ISSO TODO DIA, RODE ESSES COMANDOS TODO SANTO DIA)--
 
-1. Criação da imagem docker
+1. Abra o docker desktop
+2. Criação da imagem docker:
 docker build -t flask-almox:1.0 .
 
-2. Upload da imagem
+3. Upload da imagem:
 docker compose up
 
 --ATENÇÃO--

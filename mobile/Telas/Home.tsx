@@ -1,3 +1,17 @@
+import { useState } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 20,
+    padding: 20,
+  },
+});
+
 export function Home() { 
   const [produtos, setProdutos] = useState([]);
 
@@ -27,19 +41,8 @@ export function Home() {
   return (
     <View style={styles.container}>
       <Text>
-        {dados}
+        {produtos}
       </Text>
     </View>
   );
-
-  const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 20,
-    padding: 20,
-  },
-  });
 }
