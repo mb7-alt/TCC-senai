@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
+// AQUI TEMO AS ESTILIZAÇÕES
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -12,6 +13,7 @@ const styles = StyleSheet.create({
   },
 });
 
+// O MÉTODO DE PEGAR INFORMAÇÕES DO BANCO DE DADOS
 export function Home() { 
   const [produtos, setProdutos] = useState([]);
 
@@ -38,6 +40,7 @@ export function Home() {
     {};
   };
 
+  // OS ELEMENTOS VISUAIS EM SI
   return (
     <View style={styles.container}>
       <Text>
