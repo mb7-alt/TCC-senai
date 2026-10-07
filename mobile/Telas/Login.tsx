@@ -8,7 +8,7 @@ export function Login({ onLoginSuccess }: { onLoginSuccess: () => void }) {
 
   const enviarFormulario = async () => {
     try {
-      const resposta = await fetch('http://10.154.20.34:5000/api/login', {
+      const resposta = await fetch('http://10.154.20.153:5000/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
