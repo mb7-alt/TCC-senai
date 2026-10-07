@@ -30,6 +30,16 @@ export function Login({ onLoginSuccess }: { onLoginSuccess: () => void }) {
     }
   };
 
+      if (resposta.ok && dadosRetorno.sucesso) {
+        onLoginSucess();
+      } else {
+        Alert.alert("Erro", dadosRetorno.erro || "Credenciais inválidas");
+      }
+    } catch (erro) {
+      Alert.alert("Erro de conexão", "Não foi possível conectar ao servidor.");
+    }
+  };
+  // OS ELEMENTOS VISUAIS EM SI
   return (
     <View style={styles.container}>
       <Text style={styles.senai}>SENAI</Text>
