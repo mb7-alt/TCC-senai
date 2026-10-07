@@ -6,9 +6,10 @@ export function Login({ onLoginSuccess }: { onLoginSuccess: () => void }) {
   const [email, setItem] = useState('');
   const [senha, setQtde] = useState('');
 
+  // AQUI É ONDE PEGA INFORMAÇÃO NAS CAIXAS DE TEXTO E ENVIA PRA API, DAÍ ELA VÊ SE EXISTEM NO BANCO DE DADOS
   const enviarFormulario = async () => {
     try {
-      const resposta = await fetch('http://10.154.20.153:5000/api/login', {
+      const resposta = await fetch('http://10.154.20.34:5000/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -30,15 +31,6 @@ export function Login({ onLoginSuccess }: { onLoginSuccess: () => void }) {
     }
   };
 
-      if (resposta.ok && dadosRetorno.sucesso) {
-        onLoginSucess();
-      } else {
-        Alert.alert("Erro", dadosRetorno.erro || "Credenciais inválidas");
-      }
-    } catch (erro) {
-      Alert.alert("Erro de conexão", "Não foi possível conectar ao servidor.");
-    }
-  };
   // OS ELEMENTOS VISUAIS EM SI
   return (
     <View style={styles.container}>
@@ -65,6 +57,7 @@ export function Login({ onLoginSuccess }: { onLoginSuccess: () => void }) {
   );
 }
 
+// ESTILIZAÇÃO
 const styles = StyleSheet.create({
   container: {
     flex: 1,
