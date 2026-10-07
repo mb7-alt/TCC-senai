@@ -13,14 +13,15 @@ interface ItemProduto {
   descricao: string
 }
 
-export function Home() { 
+export function Home() {
+  // PEGA OS DADOS DA TABELA SQL
   const [produtos, setProdutos] = useState<ItemProduto[]>([]);
 
   const pegarTabela = async () => {
     try {
       const token = await AsyncStorage.getItem('userToken');
 
-      const resposta = await fetch('http://10.154.20.153:5000/api/itens', {
+      const resposta = await fetch('http://10.154.20.34:5000/api/itens', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -44,6 +45,7 @@ export function Home() {
     pegarTabela();
   }, []);
 
+  // ELEMENTOS VISUAIS EM SI
   return (    
     <View style={styles.container}>      
       <Text style={styles.texto}>Lista de Produtos:</Text>
@@ -69,6 +71,7 @@ export function Home() {
   ); 
 }
 
+// ESTILIZAÇÃO
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -85,6 +88,7 @@ const styles = StyleSheet.create({
     color: '#192a6b',
   },
   itens: {
-    width: 300
+    width: 300,
+    borderColor: '#192a6b'
   }
 });
