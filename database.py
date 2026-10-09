@@ -6,5 +6,6 @@ def db_conexao():
         database='almoxarifado',
         user='root',
         password='mysql_root',
-        port='3306'
+        port='3306',
+        charset='utf8mb4'
     )

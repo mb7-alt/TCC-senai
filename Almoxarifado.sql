@@ -1,3 +1,5 @@
+SET NAMES utf8mb4;
+
 DROP DATABASE IF EXISTS almoxarifado;
 CREATE DATABASE almoxarifado;
 USE almoxarifado;
