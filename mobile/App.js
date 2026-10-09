@@ -1,16 +1,20 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Home } from './Telas/Home';
+import { NavigationContainer } from '@react-navigation/native';
 import { Login } from './Telas/Login';
+import { AppTabs } from './Telas/AppTabs';
 
-// IMPORTA AS TELAS E EXPORTA PRO INDEX.TSX
 export default function App() {
   const [logado, setLogado] = useState(false);
 
   return (
-    <>
+    <NavigationContainer>
       <StatusBar style="auto" />
-      {logado ? <Home /> : <Login onLoginSuccess={() => setLogado(true)} />}
-    </>
+      {logado ? (
+        <AppTabs />
+      ) : (
+        <Login onLoginSuccess={() => setLogado(true)} />
+      )}
+    </NavigationContainer>
   );
 }
