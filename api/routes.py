@@ -131,7 +131,7 @@ def api_cadastrar_usuario():
     dados = request.get_json() or {}
     email = (dados.get('email') or '').strip()
     senha = (dados.get('senha') or '').strip()
-    tipo = (dados.get('posto') or 'comum').strip().lower()
+    tipo = (dados.get('tipo') or dados.get('posto') or 'comum').strip().lower()
 
     if not email or not senha:
         return jsonify({'erro': 'Preencha todos os campos'}), 400

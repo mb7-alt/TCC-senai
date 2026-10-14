@@ -21,7 +21,7 @@ export function Home() {
     try {
       const token = await AsyncStorage.getItem('userToken');
 
-      const resposta = await fetch('http://10.154.20.153:5000/api/itens', {
+      const resposta = await fetch('http://10.154.20.83:5000/api/itens', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -75,10 +75,10 @@ export function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#ffffff',
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 20,
+    margin: 5,
     padding: 20,
   },
   texto: {
