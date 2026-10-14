@@ -2,18 +2,47 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Home } from './Home';
 import { Usuarios } from './Usuarios';
+import { Ionicons } from '@expo/vector-icons';
+import { Image } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
 export function AppTabs() {
   return (
     <Tab.Navigator
-      screenOptions={{
-        headerShown: false, // Oculta o cabeçalho padrão das abas se preferir
-        tabBarActiveTintColor: '#ff9500', // Cor do ícone/texto quando selecionado
-        tabBarInactiveTintColor: '#6a859e', // Cor quando não selecionado
-        tabStyle: { paddingBottom: 5, paddingTop: 5 },
-      }}
+      screenOptions={({ route }) => ({
+        tabBarStyle: {
+          backgroundColor: '#192a6b',
+          marginBottom: 10,
+          opacity: 0.9,
+        },
+        tabBarIcon: ({ focused, color, size }) => {
+          let imageSource: any;
+
+          if (route.name === 'Home') {
+            imageSource =
+             require('../assets/home-icon-silhouette.png')
+          } else if (route.name === 'Usuarios') {
+            imageSource = 
+             require('../assets/user-shape.png')
+          }
+
+          // Retorna o componente do ícone
+          return (
+            <Image
+              source={imageSource}
+              resizeMode="contain"
+              style={{
+                width: 20,
+                height: 20,
+                tintColor: color,
+              }}
+            />
+          );
+        },
+        tabBarActiveTintColor: '#ff9500',
+        tabBarInactiveTintColor: 'gray',
+      })}
     >
       <Tab.Screen 
         name="Home" 
