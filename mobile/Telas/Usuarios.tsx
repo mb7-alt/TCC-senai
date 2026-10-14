@@ -11,8 +11,6 @@ export function Usuarios({ onAddSuccess }: { onAddSuccess?: () => void }) {
     try {
       const token = await AsyncStorage.getItem('userToken');
       
-      console.log('Enviando dados para:', 'http://10.154.20.83:5000/api/usuarios');
-      
       const resposta = await fetch('http://10.154.20.83:5000/api/usuarios', {
         method: 'POST',
         headers: {

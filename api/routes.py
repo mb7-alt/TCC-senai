@@ -148,4 +148,4 @@ def api_cadastrar_usuario():
         return jsonify({'erro': 'Erro ao cadastrar usuário'}), 400
     finally:
         cursor.close()
-        conn.close()
+        conn.close()|

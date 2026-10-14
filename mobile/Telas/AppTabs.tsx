@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Home } from './Home';
 import { Usuarios } from './Usuarios';
 import { Movimento } from './Movimentar';
+import { Adicionar } from './Itens';
 
 const Tab = createBottomTabNavigator();
 
@@ -25,8 +26,12 @@ export function AppTabs() {
         component={Usuarios} 
       />
       <Tab.Screen 
-        name="Ad.Item" 
+        name="Movimentação" 
         component={Movimento} 
+      />
+      <Tab.Screen 
+        name="Itens" 
+        component={Adicionar} 
       />
     </Tab.Navigator>
   );
