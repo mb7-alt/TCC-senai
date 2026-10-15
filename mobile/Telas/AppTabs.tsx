@@ -29,6 +29,12 @@ export function AppTabs() {
           } else if (route.name === 'Usuarios') {
             imageSource = 
              require('../assets/user-shape.png')
+          } else if (route.name === 'Movimentação') {
+            imageSource = 
+             require('../assets/recycle.png')
+          } else if (route.name === 'Itens') {
+            imageSource = 
+             require('../assets/box.png')
           }
 
           // Retorna o componente do ícone
