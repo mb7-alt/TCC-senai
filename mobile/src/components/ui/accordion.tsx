@@ -5,14 +5,8 @@ import {
   Pressable,
   StyleSheet,
   LayoutAnimation,
-  Platform,
-  UIManager,
   ViewStyle,
 } from "react-native";
-
-if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
-  UIManager.setLayoutAnimationEnabledExperimental(true);
-}
 
 interface AccordionItemProps {
   title: string;
