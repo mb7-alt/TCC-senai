@@ -13,8 +13,10 @@ export function AppTabs() {
       screenOptions={({ route }) => ({
         tabBarStyle: {
           backgroundColor: '#192a6b',
-          marginBottom: 10,
           opacity: 0.9,
+          height: 50,
+          width: 390,
+          position: 'absolute',
         },
         tabBarIcon: ({ focused, color, size }) => {
           let imageSource: any;
