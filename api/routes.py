@@ -97,6 +97,8 @@ def api_buscar_item(id_item):
         cursor.close()
         conexao.close()
 
+# --- MOVIMENTAÇÃO ---
+
 @api_bp.route('/movimentar', methods=['POST'])
 @jwt_required()
 def api_movimentar_item():
@@ -113,7 +115,34 @@ def api_movimentar_item():
     try:
         cursor.execute("UPDATE itens SET quantidade = %s WHERE id = %s", (quantidade_nova, id_item))
         cursor.execute("INSERT INTO historico (id_item, tipo, pessoa, destino, data) VALUES (%s, %s, %s, %s, NOW())", (id_item, tipo, pessoa, destino))
+        conexao.commit()
+        return jsonify({'sucesso': True}), 200
+    except Exception as e:
+        conexao.rollback()
+        return jsonify({'sucesso': False, 'erro': str(e)}), 500
+    finally:
+        cursor.close()
+        conexao.close()
 
+# --- REGISTRO DE ITENS ---
+
+@api_bp.route('/itens', methods=['POST'])
+@jwt_required()
+def api_adicionar_item():
+    dados = request.get_json() or {}
+    nome = dados.get('nome')
+    quantidade = dados.get('quantidade')
+    estoque_min = dados.get('estoqueMin')
+    preco = dados.get('preco')
+    categoria = dados.get('categoria')
+    descricao = dados.get('descricao')
+    imagem = dados.get('imagem')
+
+    conexao = db_conexao()
+    cursor = conexao.cursor()
+
+    try:
+        cursor.execute("INSERT INTO itens (nome, preco, quantidade, estoque_min, categoria, descricao, imagem) VALUES (%s, %s, %s, %s, %s, %s, %s)", (nome, quantidade, estoque_min, preco, descricao, categoria, imagem))
         conexao.commit()
         return jsonify({'sucesso': True}), 200
     except Exception as e:
@@ -148,4 +177,4 @@ def api_cadastrar_usuario():
         return jsonify({'erro': 'Erro ao cadastrar usuário'}), 400
     finally:
         cursor.close()
-        conn.close()|
+        conn.close()

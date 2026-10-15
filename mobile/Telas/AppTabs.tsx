@@ -14,11 +14,13 @@ export function AppTabs() {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarStyle: {
-          backgroundColor: '#192a6b',
+          backgroundColor: '#19296bd5',
           marginBottom: 10,
-          opacity: 0.9,
+          width: 340,
+          marginLeft: 20,
+          borderRadius: 20,
         },
-        tabBarIcon: ({ focused, color, size }) => {
+        tabBarIcon: ({ color }) => {
           let imageSource: any;
 
           if (route.name === 'Home') {
@@ -38,12 +40,13 @@ export function AppTabs() {
                 width: 20,
                 height: 20,
                 tintColor: color,
+                marginBottom: 5,
               }}
             />
           );
         },
         tabBarActiveTintColor: '#ff9500',
-        tabBarInactiveTintColor: 'gray',
+        tabBarInactiveTintColor: '#181818',
       })}
     >
       <Tab.Screen 

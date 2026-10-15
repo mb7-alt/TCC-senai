@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Accordion, AccordionItem } from '../src/components/ui/accordion';
 
@@ -16,12 +16,13 @@ interface ItemProduto {
 export function Home() {
   // PEGA OS DADOS DA TABELA SQL
   const [produtos, setProdutos] = useState<ItemProduto[]>([]);
+  const [mostrarImagem, setMostrarImagem] = useState(false);
 
   const pegarTabela = async () => {
     try {
       const token = await AsyncStorage.getItem('userToken');
 
-      const resposta = await fetch('http://10.154.20.34:5000/api/itens', {
+      const resposta = await fetch('http://10.154.20.226:5000/api/itens', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -62,6 +63,18 @@ export function Home() {
                 <Text>{'Preço: R$' + item.preco || 'Preço não encontrado'}</Text>
                 <Text>{'Categoria: ' + item.categoria || 'Categoria não encontrada'}</Text>
                 <Text>{'Descrição: ' + item.descricao || 'Descrição não encontrada'}</Text>
+                 <View style={styles.container}>
+                  <TouchableOpacity 
+                    style={styles.botao} 
+                    onPress={() => setMostrarImagem(!mostrarImagem)}
+                  >
+                    <Text style={styles.textoBotao}>
+                      {mostrarImagem ? 'Ocultar Imagem' : 'Mostrar Imagem'}
+                    </Text>
+                  </TouchableOpacity>
+
+                  {mostrarImagem && (<Image source={{ uri: 'https://reactnative.dev' }}/>)}
+                </View>
               </AccordionItem>
             </Accordion>
           </View>
@@ -78,7 +91,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 5,
     padding: 10,
   },
   texto: {
@@ -89,6 +101,25 @@ const styles = StyleSheet.create({
   },
   itens: {
     width: 300,
-    borderColor: '#192a6b'
-  }
+    borderColor: '#192a6b',
+    borderWidth: 2,
+    borderRadius: 10,
+  },
+  botao: {
+    backgroundColor: '#007AFF',
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    marginBottom: 20,
+  },
+  textoBotao: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  imagem: {
+    width: 100,
+    height: 100,
+    marginTop: 10,
+  },
 });

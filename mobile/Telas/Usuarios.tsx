@@ -88,8 +88,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 20,
-    padding: 20,
+    padding: 5,
   },
   senai: {
     fontSize: 50,
@@ -103,8 +102,8 @@ const styles = StyleSheet.create({
   },
   texto: {
     width: 220,
-    backgroundColor: 'rgb(226, 244, 247)',
-    borderColor: '#6a859e',
+    backgroundColor: '#fff',
+    borderColor: '#192a6b',
     borderWidth: 2,
     borderRadius: 10,
     margin: 10,
