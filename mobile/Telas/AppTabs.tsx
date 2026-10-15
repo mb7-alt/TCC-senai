@@ -4,6 +4,8 @@ import { Home } from './Home';
 import { Usuarios } from './Usuarios';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'react-native';
+import { Movimento } from './Movimentar';
+import { Adicionar } from './Itens';
 
 const Tab = createBottomTabNavigator();
 
@@ -51,6 +53,14 @@ export function AppTabs() {
       <Tab.Screen 
         name="Usuarios" 
         component={Usuarios} 
+      />
+      <Tab.Screen 
+        name="Movimentação" 
+        component={Movimento} 
+      />
+      <Tab.Screen 
+        name="Itens" 
+        component={Adicionar} 
       />
     </Tab.Navigator>
   );
