@@ -47,7 +47,9 @@ export function Home() {
 
   // ELEMENTOS VISUAIS EM SI
   return (    
-    <View style={styles.container}>      
+    <View style={styles.container}>
+      <Text style={styles.senai}>SENAI</Text>
+      <Text style={styles.almoxarifado}>Almoxarifado</Text>     
       <Text style={styles.texto}>Lista de Produtos:</Text>
       <FlatList
         data={produtos}
@@ -73,10 +75,21 @@ export function Home() {
 
 // ESTILIZAÇÃO
 const styles = StyleSheet.create({
+  senai: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    color: '#192a6b',
+    textAlign: 'left',
+  },
+  almoxarifado: {
+    fontSize: 20,
+    color: '#ff9500',
+    fontWeight: 'bold',
+    textAlign: 'left',
+  },
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
-    alignItems: 'center',
     justifyContent: 'center',
     margin: 5,
     padding: 10,
@@ -85,10 +98,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
+    marginTop: 40,
     color: '#192a6b',
+    textAlign: 'center',
   },
   itens: {
     width: 300,
-    borderColor: '#192a6b'
+    borderColor: '#192a6b',
+    alignSelf: 'center',
   }
 });

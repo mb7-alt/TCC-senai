@@ -18,7 +18,7 @@ export function AppTabs() {
           opacity: 0.9,
           height: 50,
           width: 390,
-          position: 'absolute',
+          display: 'flex',
         },
         tabBarIcon: ({ focused, color, size }) => {
           let imageSource: any;
