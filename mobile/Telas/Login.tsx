@@ -21,7 +21,7 @@ export function Login({ onLoginSuccess }: { onLoginSuccess: () => void }) {
 
       if (resposta.ok && dadosRetorno.sucesso) {
         await AsyncStorage.setItem('userToken', dadosRetorno.token);
-        
+        await AsyncStorage.setItem('userTipo', dadosRetorno.usuario.tipo);
         onLoginSuccess();
       } else {
         Alert.alert("Erro", dadosRetorno.erro || "Credenciais inválidas");

@@ -10,7 +10,8 @@ interface ItemProduto {
   estoque_min: number;
   preco: GLfloat;
   categoria: string;
-  descricao: string
+  descricao: string;
+  imagem: string
 }
 
 export function Home() {
@@ -72,8 +73,7 @@ export function Home() {
                       {mostrarImagem ? 'Ocultar Imagem' : 'Mostrar Imagem'}
                     </Text>
                   </TouchableOpacity>
-
-                  {mostrarImagem && (<Image source={{ uri: 'https://reactnative.dev' }}/>)}
+                  {mostrarImagem && (<Image style={styles.imagem} source={{ uri: item.imagem }}/>)}
                 </View>
               </AccordionItem>
             </Accordion>
@@ -106,14 +106,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   botao: {
-    backgroundColor: '#007AFF',
+    backgroundColor: '#ff9500',
     paddingVertical: 12,
     paddingHorizontal: 24,
-    borderRadius: 8,
-    marginBottom: 20,
+    borderRadius: 15,
+    marginTop: 15,
+    marginBottom: 5.,
   },
   textoBotao: {
-    color: '#fff',
+    color: '#000000',
     fontSize: 16,
     fontWeight: 'bold',
   },
