@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, FlatList, TouchableOpacity, Image } from 'react
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Accordion, AccordionItem } from '../src/components/ui/accordion';
 
+// DEFINE A CATEGORIA DE CADA ELEMENTO DA TABELA, SE É NÚMERO, STRING, ETC
 interface ItemProduto {
   id: number;
   nome: string;
@@ -23,7 +24,7 @@ export function Home() {
     try {
       const token = await AsyncStorage.getItem('userToken');
 
-      const resposta = await fetch('http://10.154.20.226:5000/api/itens', {
+      const resposta = await fetch('http://10.154.20.34:5000/api/itens', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -50,8 +51,10 @@ export function Home() {
   // ELEMENTOS VISUAIS EM SI
   return (    
     <View style={styles.container}>
+      <View>
       <Text style={styles.senai}>SENAI</Text>
-      <Text style={styles.almoxarifado}>Almoxarifado</Text>     
+      <Text style={styles.almoxarifado}>Almoxarifado</Text>
+      </View>     
       <Text style={styles.texto}>Lista de Produtos:</Text>
       <FlatList
         data={produtos}

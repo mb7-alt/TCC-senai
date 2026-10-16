@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+// AQUI DEFINE OS TIPOS DE CADA ELEMENTO DA TABELA. NÚMEROS, NOMES, ETC
 interface ItemProduto {
   id: number;
   nome: string;
@@ -12,6 +13,7 @@ interface ItemProduto {
   descricao: string
 }
 
+// AQUI ELE EMPURRA OS DADOS PRO BANCO PARA PREENCHER A TABELA COM O NOVO ITEM, RECONHECENDO O USUÁRIO COM O "userToken"
 export function Adicionar() { 
   const [nome, setNome] = useState('');
   const [quantidade, setQuantidade] = useState('');
@@ -25,7 +27,7 @@ export function Adicionar() {
     try {
       const token = await AsyncStorage.getItem('userToken');
 
-      const resposta = await fetch('http://10.154.20.226:5000/api/itens', {
+      const resposta = await fetch('http://10.154.20.34:5000/api/itens', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -49,9 +51,15 @@ export function Adicionar() {
   // ELEMENTOS VISUAIS EM SI
   return (
       <View style={styles.container}>
+        <View style={styles.header}>
         <Text style={styles.senai}>SENAI</Text>
         <Text style={styles.almoxarifado}>Almoxarifado</Text>
-  
+        </View>
+
+        <View style={styles.secondHeader}>
+          <Text style={styles.item}>Cadastro de Itens: </Text>
+        </View>
+
         <TextInput
           style={styles.texto}
           placeholder="Nome do Item"
@@ -114,25 +122,40 @@ export function Adicionar() {
   
   // ESTILIZAÇÃO
   const styles = StyleSheet.create({
+    header: {
+      alignItems: 'flex-start',
+    },
+    secondHeader: {
+      marginTop: 30,
+    },
+    item: {
+      fontSize: 18,
+      fontWeight: 'bold',
+      marginBottom: 10,
+      marginTop: 10,
+      color: '#192a6b',
+      textAlign: 'center',
+    },
     container: {
       flex: 1,
       backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: 5,
+      padding: 10,
     },
     senai: {
-      fontSize: 50,
+      fontSize: 40,
       fontWeight: 'bold',
       color: '#192a6b',
+      textAlign: 'left',
     },
     almoxarifado: {
-      fontSize: 30,
+      fontSize: 20,
       color: '#ff9500',
       fontWeight: 'bold',
+      textAlign: 'left',
     },
     texto: {
       width: 260,
+      height: 45,
       backgroundColor: '#fff',
       borderColor: '#192a6b',
       borderWidth: 2,
@@ -141,15 +164,16 @@ export function Adicionar() {
       fontSize: 15,
       paddingHorizontal: 10,
       paddingVertical: 8,
+      alignSelf: 'center',
     },
     dados: {
       width: 200,
       height: 50,
       borderRadius: 10,
       backgroundColor: '#192a6b',
+      marginTop: 10,
+      alignSelf: 'center',
       justifyContent: 'center',
-      alignItems: 'center',
-      marginTop: 15,
     },
     dadinhos: {
       color: '#fff',

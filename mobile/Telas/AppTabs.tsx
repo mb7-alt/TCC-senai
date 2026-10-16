@@ -8,6 +8,7 @@ import { Movimento } from './Movimentar';
 import { Adicionar } from './Itens';
 import { RouteProp, ParamListBase } from '@react-navigation/native';
 
+// AQUI É ONDE A GNT MEXE NA NAVBAR DO APP, ESTILIZAÇÃO E TALS
 const Tab = createBottomTabNavigator();
 
 const tabNavigatorOptions = ({ route }: { route: RouteProp<ParamListBase, string> }) => ({

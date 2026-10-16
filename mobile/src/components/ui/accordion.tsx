@@ -8,6 +8,7 @@ import {
   ViewStyle,
 } from "react-native";
 
+// ESSE "accordion.tsx" É UM ELEMENTO DE FRAMEWORK, TIPO OS ALERTAS DO SITE, COISA BONITA
 interface AccordionItemProps {
   title: string;
   children: React.ReactNode;
@@ -31,6 +32,7 @@ export function AccordionItem({ title, children, defaultOpen = false }: Accordio
     setOpen(!open);
   };
 
+  // ELEMENTOS VISUAIS EM SI, DA TABELA NO CASO
   return (
     <View style={styles.item}>
       <Pressable onPress={toggle} style={styles.trigger}>
@@ -42,6 +44,7 @@ export function AccordionItem({ title, children, defaultOpen = false }: Accordio
   );
 }
 
+// ESTILIZAÇÃO DO ELEMENTO DA PÁGINA HOME, AQUELA TABELA DIFERENCIADA QUE VEM DO FRAMEWORK DO REACT NATIVE (ra-ui), TIPO O BOOTSTRAP E O OUTRO LÁ DO SITE 
 const styles = StyleSheet.create({
   accordion: { borderWidth: 1, borderColor: "#E4E4E7", borderRadius: 8, overflow: "hidden" },
   item: { borderBottomWidth: 1, borderBottomColor: "#E4E4E7" },

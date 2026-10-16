@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+// AQUI VAI REGISTRAR OS DADOS DO NOVO USUÁRIO QUE VC COLOCOU, DEPOIS ENVIÁ-LOS PRO BANCO
 export function Usuarios({ onAddSuccess }: { onAddSuccess?: () => void }) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
@@ -11,7 +12,7 @@ export function Usuarios({ onAddSuccess }: { onAddSuccess?: () => void }) {
     try {
       const token = await AsyncStorage.getItem('userToken');
       
-      const resposta = await fetch('http://10.154.20.226:5000/api/usuarios', {
+      const resposta = await fetch('http://10.154.20.34:5000/api/usuarios', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -50,6 +51,7 @@ export function Usuarios({ onAddSuccess }: { onAddSuccess?: () => void }) {
     }
   };
 
+  // ELEMENTOS VISUAIS EM SI
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -117,7 +119,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    margin: 5,
     padding: 10,
   },
   texto: {
