@@ -19,8 +19,12 @@ export function AppTabs() {
           height: 50,
           width: 390,
           display: 'flex',
+          marginBottom: 10,
+          width: 340,
+          marginLeft: 20,
+          borderRadius: 20,
         },
-        tabBarIcon: ({ focused, color, size }) => {
+        tabBarIcon: ({ color }) => {
           let imageSource: any;
 
           if (route.name === 'Home') {
@@ -46,12 +50,13 @@ export function AppTabs() {
                 width: 20,
                 height: 20,
                 tintColor: color,
+                marginBottom: 5,
               }}
             />
           );
         },
         tabBarActiveTintColor: '#ff9500',
-        tabBarInactiveTintColor: 'gray',
+        tabBarInactiveTintColor: '#181818',
       })}
     >
       <Tab.Screen 

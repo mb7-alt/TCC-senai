@@ -21,7 +21,7 @@ export function Movimento() {
     try {
       const token = await AsyncStorage.getItem('userToken');
 
-      const resposta = await fetch(`http://10.154.20.83:5000/api/item/${itemId}`, {
+      const resposta = await fetch(`http://10.154.20.226:5000/api/item/${itemId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -161,8 +161,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 20,
-    padding: 20,
+    padding: 5,
   },
   senai: {
     fontSize: 50,
@@ -176,8 +175,8 @@ const styles = StyleSheet.create({
   },
   texto: {
     width: 260,
-    backgroundColor: 'rgb(226, 244, 247)',
-    borderColor: '#6a859e',
+    backgroundColor: '#fff',
+    borderColor: '#192a6b',
     borderWidth: 2,
     borderRadius: 10,
     margin: 6,

@@ -17,6 +17,7 @@ export function Adicionar() {
   const [quantidade, setQuantidade] = useState('');
   const [estoqueMin, setEstoqueMin] = useState('');
   const [preco, setPreco] = useState('');
+  const [categoria, setCategoria] = useState('');
   const [descricao, setdescricao] = useState('');
   const [imagem, setImagem] = useState('');
 
@@ -24,13 +25,13 @@ export function Adicionar() {
     try {
       const token = await AsyncStorage.getItem('userToken');
 
-      const resposta = await fetch('http://10.154.20.83:5000/api/itens', {
+      const resposta = await fetch('http://10.154.20.226:5000/api/itens', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ nome, quantidade, estoqueMin, preco, descricao, imagem }),
+        body: JSON.stringify({ nome, quantidade, estoqueMin, preco, categoria, descricao, imagem }),
       });
 
       const dadosRetorno = await resposta.json();
@@ -63,7 +64,7 @@ export function Adicionar() {
           placeholder="Quantidade"
           value={quantidade}
           onChangeText={setQuantidade}
-          keyboardType="numeric"
+          keyboardType='numeric'
         />
   
         <TextInput
@@ -72,7 +73,6 @@ export function Adicionar() {
           value={estoqueMin}
           onChangeText={setEstoqueMin}
           keyboardType="numeric"
-          editable={false}
         />
   
         <TextInput
@@ -80,6 +80,14 @@ export function Adicionar() {
           placeholder="Preço do produto"
           value={preco}
           onChangeText={setPreco}
+          keyboardType='decimal-pad'
+        />
+
+        <TextInput
+          style={styles.texto}
+          placeholder="Categoria do produto"
+          value={categoria}
+          onChangeText={setCategoria}
         />
   
         <TextInput
@@ -94,6 +102,7 @@ export function Adicionar() {
           placeholder="Imagem"
           value={imagem}
           onChangeText={setImagem}
+          keyboardType='url'
         />
   
         <TouchableOpacity style={styles.dados} onPress={CadastrarProduto}>
@@ -110,8 +119,7 @@ export function Adicionar() {
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
-      margin: 20,
-      padding: 20,
+      padding: 5,
     },
     senai: {
       fontSize: 50,
@@ -125,8 +133,8 @@ export function Adicionar() {
     },
     texto: {
       width: 260,
-      backgroundColor: 'rgb(226, 244, 247)',
-      borderColor: '#6a859e',
+      backgroundColor: '#fff',
+      borderColor: '#192a6b',
       borderWidth: 2,
       borderRadius: 10,
       margin: 6,
