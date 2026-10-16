@@ -113,7 +113,7 @@ def listaSucesso():
         imagem = request.form['imagem']
 
         item = (nome, preco, quantidade, estoque_min, categoria, descricao, imagem)
-        query = 'INSERT INTO itens (nome, preço, quantidade, estoque_min, categoria, descricao, imagem) VALUES (%s, %s, %s, %s, %s, %s, %s);'
+        query = 'INSERT INTO itens (nome, preco, quantidade, estoque_min, categoria, descricao, imagem) VALUES (%s, %s, %s, %s, %s, %s, %s);'
         
         con = db_conexao()
         cursor = con.cursor()

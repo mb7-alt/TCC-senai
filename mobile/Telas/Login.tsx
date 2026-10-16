@@ -1,0 +1,103 @@
+import { useState } from 'react';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+export function Login({ onLoginSuccess }: { onLoginSuccess: () => void }) {
+  const [email, setItem] = useState('');
+  const [senha, setQtde] = useState('');
+
+  // AQUI É ONDE PEGA INFORMAÇÃO NAS CAIXAS DE TEXTO E ENVIA PRA API, DAÍ ELA VÊ SE EXISTEM NO BANCO DE DADOS
+  const enviarFormulario = async () => {
+    try {
+      const resposta = await fetch('http://10.154.20.226:5000/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, senha }),
+      });
+
+      const dadosRetorno = await resposta.json();
+
+      if (resposta.ok && dadosRetorno.sucesso) {
+        await AsyncStorage.setItem('userToken', dadosRetorno.token);
+        
+        onLoginSuccess();
+      } else {
+        Alert.alert("Erro", dadosRetorno.erro || "Credenciais inválidas");
+      }
+    } catch (erro) {
+      Alert.alert("Erro de Conexão", "Não foi possível conectar ao servidor.");
+    }
+  };
+
+  // OS ELEMENTOS VISUAIS EM SI
+  return (
+    <View style={styles.container}>
+      <Text style={styles.senai}>SENAI</Text>
+      <Text style={styles.almoxarifado}>Almoxarifado</Text>
+      <TextInput
+        style={styles.texto}
+        placeholder="Digite seu e-mail"
+        value={email}
+        onChangeText={setItem}
+        autoCapitalize="none"
+        keyboardType="email-address"
+      />
+      <TextInput
+        style={styles.texto}
+        placeholder="Digite sua senha"
+        value={senha}
+        onChangeText={setQtde}
+        secureTextEntry
+      />
+      <TouchableOpacity style={styles.dados} onPress={enviarFormulario}>
+        <Text style={styles.dadinhos}>Entrar</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+// ESTILIZAÇÃO
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 5,
+  },
+  senai: {
+    fontSize: 50,
+    fontWeight: 'bold',
+    color: '#192a6b',
+  },
+  almoxarifado: {
+    fontSize: 30,
+    color: '#ff9500',
+    fontWeight: 'bold',
+  },
+  texto: {
+    width: 220,
+    backgroundColor: '#fff',
+    borderColor: '#192a6b',
+    borderWidth: 2,
+    borderRadius: 10,
+    margin: 10,
+    fontSize: 15,
+    paddingHorizontal: 10,
+  },
+  dados: {
+    width: 130,
+    height: 50,
+    borderRadius: 10,
+    backgroundColor: '#192a6b',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  dadinhos: {
+    color: '#fff',
+    fontSize: 18,
+    textAlign: 'center',
+  },
+});
