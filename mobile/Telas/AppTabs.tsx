@@ -14,7 +14,11 @@ export function AppTabs() {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarStyle: {
-          backgroundColor: '#19296bd5',
+          backgroundColor: '#192a6b',
+          opacity: 0.9,
+          height: 50,
+          width: 390,
+          display: 'flex',
           marginBottom: 10,
           width: 340,
           marginLeft: 20,
@@ -29,6 +33,12 @@ export function AppTabs() {
           } else if (route.name === 'Usuarios') {
             imageSource = 
              require('../assets/user-shape.png')
+          } else if (route.name === 'Movimentação') {
+            imageSource = 
+             require('../assets/recycle.png')
+          } else if (route.name === 'Itens') {
+            imageSource = 
+             require('../assets/box.png')
           }
 
           // Retorna o componente do ícone

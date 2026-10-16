@@ -52,8 +52,12 @@ export function Usuarios({ onAddSuccess }: { onAddSuccess?: () => void }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.senai}>SENAI</Text>
-      <Text style={styles.almoxarifado}>Almoxarifado</Text>
+      <View style={styles.header}>
+        <Text style={styles.senai}>SENAI</Text>
+        <Text style={styles.almoxarifado}>Almoxarifado</Text>
+      </View>
+      <View style={styles.secondHeader}>
+        <Text style={styles.cadastro}>Cadastro de Usuários:</Text>
       <TextInput
         style={styles.texto}
         placeholder="Digite o e-mail"
@@ -77,12 +81,16 @@ export function Usuarios({ onAddSuccess }: { onAddSuccess?: () => void }) {
       <TouchableOpacity style={styles.dados} onPress={EnviarInfo}>
         <Text style={styles.dadinhos}>Cadastrar</Text>
       </TouchableOpacity>
+      </View>
     </View>
   );
 }
 
 // ESTILIZAÇÃO
 const styles = StyleSheet.create({
+  header: {
+    alignItems: 'flex-start',
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
@@ -91,32 +99,53 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   senai: {
-    fontSize: 50,
+    fontSize: 40,
     fontWeight: 'bold',
     color: '#192a6b',
+    textAlign: 'left',
   },
   almoxarifado: {
-    fontSize: 30,
+    fontSize: 20,
     color: '#ff9500',
     fontWeight: 'bold',
+    textAlign: 'left',
+  },
+  cadastro: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    marginTop: 40,
+    color: '#192a6b',
+    textAlign: 'center',
+  },
+  secondHeader: {
+    marginTop: 50,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    margin: 5,
+    padding: 10,
   },
   texto: {
-    width: 220,
-    backgroundColor: '#fff',
+    width: 250,
+    height: 60,
+    backgroundColor: 'rgb(255, 255, 255)',
     borderColor: '#192a6b',
     borderWidth: 2,
     borderRadius: 10,
-    margin: 10,
+    margin: 8,
     fontSize: 15,
     paddingHorizontal: 10,
+    alignSelf: 'center',
   },
   dados: {
-    width: 130,
-    height: 50,
+    width: 190,
+    height: 60,
     borderRadius: 10,
     backgroundColor: '#192a6b',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignSelf: 'center',
   },
   dadinhos: {
     color: '#fff',
