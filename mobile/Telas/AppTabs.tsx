@@ -22,15 +22,17 @@ const tabNavigatorOptions = ({ route }: { route: RouteProp<ParamListBase, string
     let imageSource: any;
 
     if (route.name === 'Home') {
-      imageSource = require('../assets/home-icon-silhouette.png');
+      imageSource =
+       require('../assets/home-icon-silhouette.png')
     } else if (route.name === 'Usuarios') {
-      imageSource = require('../assets/user-shape.png');
-    } else if (route.name === 'Movimento') {
-      imageSource = require('../assets/user-shape.png');
-    } else if (route.name === 'Adicionar') {
-      imageSource = require('../assets/user-shape.png');
-    } else {
-      imageSource = require('../assets/home-icon-silhouette.png'); 
+      imageSource = 
+       require('../assets/user-shape.png')
+    } else if (route.name === 'Movimentação') {
+      imageSource = 
+       require('../assets/recycle.png')
+    } else if (route.name === 'Itens') {
+      imageSource = 
+       require('../assets/box.png')
     }
 
     return (

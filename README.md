@@ -35,4 +35,5 @@ docker compose up
 
 --ATENÇÃO--
 
-Verificar se está na porta correta para uso do site, 3307 ou 3306 (boa sorte, campeão)
+##Verificar se está na porta correta para uso do site, 3307 ou 3306 (boa sorte, campeão)##
+Com o docker, a gente meio que inutilizou o uso do mysql workbench, fazer oq né
