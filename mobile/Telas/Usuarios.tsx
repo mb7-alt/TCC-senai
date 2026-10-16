@@ -91,13 +91,6 @@ const styles = StyleSheet.create({
   header: {
     alignItems: 'flex-start',
   },
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 5,
-  },
   senai: {
     fontSize: 40,
     fontWeight: 'bold',
