@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+// AQUI DEFINE OS TIPOS DE CADA ELEMENTO DA TABELA. NÚMEROS, NOMES, ETC
 interface ItemProduto {
   id: number;
   nome: string;
@@ -12,6 +13,7 @@ interface ItemProduto {
   descricao: string
 }
 
+// AQUI ELE EMPURRA OS DADOS PRO BANCO PARA PREENCHER A TABELA COM O NOVO ITEM, RECONHECENDO O USUÁRIO COM O "userToken"
 export function Adicionar() { 
   const [nome, setNome] = useState('');
   const [quantidade, setQuantidade] = useState('');

@@ -7,6 +7,7 @@ import { Image } from 'react-native';
 import { Movimento } from './Movimentar';
 import { Adicionar } from './Itens';
 
+// AQUI É ONDE A GNT MEXE NA NAVBAR DO APP, ESTILIZAÇÃO E TALS
 const Tab = createBottomTabNavigator();
 
 export function AppTabs() {
@@ -14,8 +15,7 @@ export function AppTabs() {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarStyle: {
-          backgroundColor: '#192a6b',
-          opacity: 0.9,
+          backgroundColor: '#19296be0',
           height: 50,
           width: 390,
           display: 'flex',
@@ -56,7 +56,7 @@ export function AppTabs() {
           );
         },
         tabBarActiveTintColor: '#ff9500',
-        tabBarInactiveTintColor: '#181818',
+        tabBarInactiveTintColor: '#fcfcfca6',
       })}
     >
       <Tab.Screen 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+// AQUI VAI REGISTRAR OS DADOS DO NOVO USUÁRIO QUE VC COLOCOU, DEPOIS ENVIÁ-LOS PRO BANCO
 export function Usuarios({ onAddSuccess }: { onAddSuccess?: () => void }) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
@@ -50,6 +51,7 @@ export function Usuarios({ onAddSuccess }: { onAddSuccess?: () => void }) {
     }
   };
 
+  // ELEMENTOS VISUAIS EM SI
   return (
     <View style={styles.container}>
       <View style={styles.header}>

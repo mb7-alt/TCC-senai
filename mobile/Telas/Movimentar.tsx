@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+// AQUI ELE VAI PUXAR OS DADOS DO ITEM QUE TU COLOCOU O ID, VAI PREENCHER OS CAMPOS AUTOMÁTICOS E PERMITIR QUE VC PREENCHA OS OUTROS, DAÍ VAI ENVIAR OS NOVOS DADOS PRO BANCO
 export function Movimento() {
   // Campos referentes aos dados do item
   const [id, setId] = useState('');
@@ -85,6 +86,7 @@ export function Movimento() {
     }
   };
 
+  // ELEMENTOS VISUAIS EM SI
   return (
     <View style={styles.container}>
       <View style={styles.header}>
