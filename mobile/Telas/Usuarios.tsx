@@ -11,7 +11,7 @@ export function Usuarios({ onAddSuccess }: { onAddSuccess?: () => void }) {
     try {
       const token = await AsyncStorage.getItem('userToken');
       
-      const resposta = await fetch('http://10.154.20.83:5000/api/usuarios', {
+      const resposta = await fetch('http://10.154.20.34:5000/api/usuarios', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -91,13 +91,6 @@ const styles = StyleSheet.create({
   header: {
     alignItems: 'flex-start',
   },
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 5,
-  },
   senai: {
     fontSize: 40,
     fontWeight: 'bold',
@@ -124,7 +117,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    margin: 5,
     padding: 10,
   },
   texto: {

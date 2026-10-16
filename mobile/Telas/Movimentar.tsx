@@ -57,7 +57,7 @@ export function Movimento() {
     try {
       const token = await AsyncStorage.getItem('userToken');
 
-      const resposta = await fetch('http://10.154.20.83:5000/api/movimentar', {
+      const resposta = await fetch('http://10.154.20.34:5000/api/movimentar', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -87,8 +87,13 @@ export function Movimento() {
 
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
       <Text style={styles.senai}>SENAI</Text>
       <Text style={styles.almoxarifado}>Almoxarifado</Text>
+      </View>
+      <View style={styles.secondHeader}>
+        <Text style={styles.move}>Movimentação de itens: </Text>
+      </View>
 
       <TextInput
         style={styles.texto}
@@ -156,25 +161,40 @@ export function Movimento() {
 
 // ESTILIZAÇÃO
 const styles = StyleSheet.create({
+  header: {
+    alignItems: 'flex-start',
+  },
+  secondHeader: {
+    marginTop: 30,
+  },
+  move: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    marginTop: 10,
+    color: '#192a6b',
+    textAlign: 'center',
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 5,
+    padding: 10,
   },
   senai: {
-    fontSize: 50,
+    fontSize: 40,
     fontWeight: 'bold',
     color: '#192a6b',
+    textAlign: 'left',
   },
   almoxarifado: {
-    fontSize: 30,
+    fontSize: 20,
     color: '#ff9500',
     fontWeight: 'bold',
+    textAlign: 'left',
   },
   texto: {
     width: 260,
+    height: 45,
     backgroundColor: '#fff',
     borderColor: '#192a6b',
     borderWidth: 2,
@@ -183,15 +203,16 @@ const styles = StyleSheet.create({
     fontSize: 15,
     paddingHorizontal: 10,
     paddingVertical: 8,
+    alignSelf: 'center',
   },
   dados: {
     width: 200,
     height: 50,
     borderRadius: 10,
     backgroundColor: '#192a6b',
+    marginTop: 10,
+    alignSelf: 'center',
     justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 15,
   },
   dadinhos: {
     color: '#fff',
