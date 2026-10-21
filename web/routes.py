@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, request, session, url_for
+from flask import Blueprint, render_template, redirect, request, session, url_for, jsonify
 import bcrypt
 from functools import wraps
 from database import db_conexao
@@ -92,6 +92,64 @@ def admin():
 @login_required()
 def controle():
     return render_template('cont.html')
+
+@web_bp.route('/item/<int:id_item>', methods=['GET'])
+@login_required()
+def api_buscar_item(id_item):
+    conexao = db_conexao()
+    cursor = conexao.cursor(dictionary=True)
+
+    try:
+        cursor.execute("SELECT nome, quantidade, estoque_min FROM itens WHERE id = %s", (id_item,))
+        item = cursor.fetchone()
+
+        if not item:
+            return jsonify({'erro': 'Item não encontrado'}), 404     
+
+        cursor.execute(
+            "SELECT tipo, pessoa, destino, DATE_FORMAT(data, '%d/%m/%Y %H:%i') as data FROM historico WHERE id_item = %s ORDER BY data DESC", 
+            (id_item,)
+        )
+        historico = cursor.fetchall()
+
+        return jsonify({
+            'nome': item['nome'],
+            'quantidade': item['quantidade'],
+            'estoque_min': item['estoque_min'],
+            'historico': historico
+        })
+    finally:
+        cursor.close()
+        conexao.close()
+
+@web_bp.route('/movimentar', methods=['POST'])
+@login_required()
+def movimentar_item():
+    dados = request.get_json() or {}
+    id_item = dados.get('id') or dados.get('itemId')
+    quantidade_nova = dados.get('quantidade') or dados.get('novaQuantidade')
+    pessoa = dados.get('pessoa')
+    destino = dados.get('destino')
+    tipo = dados.get('tipo')
+
+    conexao = db_conexao()
+    cursor = conexao.cursor()
+
+    try:
+        cursor.execute("UPDATE itens SET quantidade = %s WHERE id = %s", (quantidade_nova, id_item))
+        query_hist = "INSERT INTO historico (id_item, tipo, pessoa, destino, data) VALUES (%s, %s, %s, %s, NOW())"
+        cursor.execute(query_hist, (id_item, tipo, pessoa, destino))
+
+        conexao.commit()
+        resposta = {'sucesso': True}
+    except Exception as e:
+        conexao.rollback()
+        resposta = {'sucesso': False, 'erro': str(e)}
+    finally:
+        cursor.close()
+        conexao.close()
+
+    return jsonify(resposta)
 
 # --- PÁGINA DE ADICIONAR ITENS À LISTA ---
 

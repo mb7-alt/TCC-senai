@@ -146,7 +146,7 @@
                     return;
                 }
                 console.log("Buscando ID:", id);
-                fetch(`/api/item/${id}`)
+                fetch(`/item/${id}`)
                     .then(response => {
                         console.log("Status da resposta da Rede:", response.status);
                         if (!response.ok) throw new Error('Item não encontrado');
@@ -223,7 +223,7 @@
                     destino: destino,
                     tipo: tipoMovimentacao
                 };
-                fetch('/api/movimentar', {
+                fetch('/movimentar', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(dadosMov)
