@@ -1,3 +1,4 @@
+# PRA FAZER ESPECIFICAMENTE LOGIN, TANTO NA WEB QUANTO NO EXPO
 from flask import Flask, redirect, url_for
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
