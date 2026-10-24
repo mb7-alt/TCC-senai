@@ -5,7 +5,7 @@
 
 ---
 
-## 📌 Sumário
+##  Sumário
 1. [Visão Geral do Projeto](#-visão-geral-do-projeto)
 2. [Arquitetura e Tecnologias](#-arquitetura-e-tecnologias)
 3. [Estrutura do Repositório](#-estrutura-do-repositório)
@@ -35,7 +35,7 @@ O **Almoxarifado SENAI** foi projetado para modernizar o controle de entrada, sa
 
 ---
 
-## 🏗️ Arquitetura e Tecnologias
+##  Arquitetura e Tecnologias
 
 ```
 +-------------------------------------------------------------+
@@ -74,7 +74,7 @@ O **Almoxarifado SENAI** foi projetado para modernizar o controle de entrada, sa
 
 ---
 
-## 📂 Estrutura do Repositório
+##  Estrutura do Repositório
 
 ```text
 TCC-senai/
@@ -318,7 +318,7 @@ A API do Almoxarifado opera sob o prefixo `/api` e retorna respostas em formato 
 
 ---
 
-### 📊 Painel e Métricas
+###  Painel e Métricas
 
 #### 3. Obter Indicadores Gerais
 - **Rota:** `GET /api/dashboard`
@@ -335,7 +335,7 @@ A API do Almoxarifado opera sob o prefixo `/api` e retorna respostas em formato 
 
 ---
 
-### 🛠️ Gerenciamento de Ferramentas e Estoque
+###  Gerenciamento de Ferramentas e Estoque
 
 #### 4. Listar Ferramentas
 - **Rota:** `GET /api/itens`
@@ -371,7 +371,7 @@ A API do Almoxarifado opera sob o prefixo `/api` e retorna respostas em formato 
 
 ---
 
-### 🔄 Movimentações de Estoque
+###  Movimentações de Estoque
 
 #### 9. Registrar Entrada ou Saída de Material
 - **Rota:** `POST /api/movimentar`
@@ -425,7 +425,7 @@ A API do Almoxarifado opera sob o prefixo `/api` e retorna respostas em formato 
 
 ---
 
-## ❓ Diagnóstico e Solução de Dúvidas Frequentes
+##  Diagnóstico e Solução de Dúvidas Frequentes
 
 ### 1. Erro `ModuleNotFoundError` ao rodar `python app.py`
 Execute o comando de instalação para garantir que todas as bibliotecas necessárias estejam no seu ambiente:
@@ -447,8 +447,3 @@ pip install -r requirements.txt
 - Na tela de login do app, use o botão de configuração para digitar o IP do computador na rede local (ex: `http://192.168.0.10:5000/api`).
 
 ---
-
-## 🏆 Créditos e Licença
-
-Desenvolvido para fins acadêmicos e pedagógicos no **SENAI Paraná - Sistema FIEP**.  
-Código aberto para aprendizado e evolução contínua da gestão industrial 4.0.
