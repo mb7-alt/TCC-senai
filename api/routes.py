@@ -242,6 +242,20 @@ def api_buscar_item(id_item):
         cursor.close()
         conn.close()
 
+<<<<<<< HEAD
+=======
+# --- MOVIMENTAÇÃO ---
+
+@api_bp.route('/movimentar', methods=['POST'])
+@jwt_required()
+def api_movimentar_item():
+    dados = request.get_json() or {}
+    id_item = dados.get('id') or dados.get('itemId')
+    quantidade_nova = dados.get('quantidade') or dados.get('novaQuantidade')
+    pessoa = dados.get('pessoa')
+    destino = dados.get('destino')
+    tipo = dados.get('tipo')
+>>>>>>> 449e082883ed487d46ad571dab8210613b1942f2
 
 @api_bp.route('/itens', methods=['POST'])
 @auth_required(admin_only=True)
@@ -260,6 +274,7 @@ def api_cadastrar_item():
         return jsonify({'erro': 'Nome, preço, quantidade e estoque mínimo são obrigatórios.'}), 400
 
     try:
+<<<<<<< HEAD
         preco = float(str(preco).replace(',', '.'))
         quantidade = int(quantidade)
         estoque_min = int(estoque_min)
@@ -276,6 +291,40 @@ def api_cadastrar_item():
         conn.commit()
         novo_id = cursor.lastrowid
         return jsonify({'sucesso': True, 'mensagem': 'Item cadastrado com sucesso!', 'id': novo_id}), 201
+=======
+        cursor.execute("UPDATE itens SET quantidade = %s WHERE id = %s", (quantidade_nova, id_item))
+        cursor.execute("INSERT INTO historico (id_item, tipo, pessoa, destino, data) VALUES (%s, %s, %s, %s, NOW())", (id_item, tipo, pessoa, destino))
+        conexao.commit()
+        return jsonify({'sucesso': True}), 200
+    except Exception as e:
+        conexao.rollback()
+        return jsonify({'sucesso': False, 'erro': str(e)}), 500
+    finally:
+        cursor.close()
+        conexao.close()
+
+# --- REGISTRO DE ITENS ---
+
+@api_bp.route('/itens', methods=['POST'])
+@jwt_required()
+def api_adicionar_item():
+    dados = request.get_json() or {}
+    nome = dados.get('nome')
+    quantidade = dados.get('quantidade')
+    estoque_min = dados.get('estoqueMin')
+    preco = dados.get('preco')
+    categoria = dados.get('categoria')
+    descricao = dados.get('descricao')
+    imagem = dados.get('imagem')
+
+    conexao = db_conexao()
+    cursor = conexao.cursor()
+
+    try:
+        cursor.execute("INSERT INTO itens (nome, preco, quantidade, estoque_min, categoria, descricao, imagem) VALUES (%s, %s, %s, %s, %s, %s, %s)", (nome, quantidade, estoque_min, preco, descricao, categoria, imagem))
+        conexao.commit()
+        return jsonify({'sucesso': True}), 200
+>>>>>>> 449e082883ed487d46ad571dab8210613b1942f2
     except Exception as e:
         conn.rollback()
         return jsonify({'erro': f'Erro ao salvar item: {str(e)}'}), 500

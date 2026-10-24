@@ -4,6 +4,7 @@ services:
     image: flask-almox:1.0
     build: .
     ports:
+<<<<<<< HEAD
       - "5000:5000"
     environment:
       - DB_HOST=db
@@ -14,6 +15,11 @@ services:
     depends_on:
       db:
         condition: service_healthy
+=======
+    - "5000:5000"
+    depends_on:
+    - db
+>>>>>>> 449e082883ed487d46ad571dab8210613b1942f2
 
   db:
     image: mysql:8.0
@@ -22,17 +28,24 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: mysql_root
       MYSQL_DATABASE: almoxarifado
+<<<<<<< HEAD
+=======
+      LANG: C.UTF-8
+>>>>>>> 449e082883ed487d46ad571dab8210613b1942f2
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     ports:
       - "3306:3306"
     volumes:
       - ./Almoxarifado.sql:/docker-entrypoint-initdb.d/init.sql
       - mysql_data:/var/lib/mysql
+<<<<<<< HEAD
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pmysql_root"]
       interval: 5s
       timeout: 5s
       retries: 10
+=======
+>>>>>>> 449e082883ed487d46ad571dab8210613b1942f2
 
 volumes:
   mysql_data:

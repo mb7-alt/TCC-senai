@@ -8,6 +8,7 @@ DB_PORT = int(os.environ.get('DB_PORT', 3306))
 DB_USER = os.environ.get('DB_USER', 'root')
 
 def db_conexao():
+<<<<<<< HEAD
     """
     Estabelece conexão com o MySQL com suporte híbrido:
     Funciona no Docker (host 'db'), no WAMP/XAMPP/MySQL Local ('localhost' ou '127.0.0.1'),
@@ -159,3 +160,13 @@ def verificar_migracoes():
         print("[INFO] Migrações e verificação de banco concluídas com sucesso.")
     except Exception as e:
         print(f"[AVISO] Não foi possível verificar migrações do banco (MySQL pode ainda não estar rodando): {e}")
+=======
+    return mysql.connector.connect(
+        host='db',
+        database='almoxarifado',
+        user='root',
+        password='mysql_root',
+        port='3306',
+        charset='utf8mb4'
+    )
+>>>>>>> 449e082883ed487d46ad571dab8210613b1942f2

@@ -181,6 +181,12 @@ def listaSucesso():
         item = (nome, preco_val, qtd_val, min_val, categoria, descricao, imagem)
         query = 'INSERT INTO itens (nome, preco, quantidade, estoque_min, categoria, descricao, imagem) VALUES (%s, %s, %s, %s, %s, %s, %s);'
 
+<<<<<<< HEAD
+=======
+        item = (nome, preco, quantidade, estoque_min, categoria, descricao, imagem)
+        query = 'INSERT INTO itens (nome, preco, quantidade, estoque_min, categoria, descricao, imagem) VALUES (%s, %s, %s, %s, %s, %s, %s);'
+        
+>>>>>>> 449e082883ed487d46ad571dab8210613b1942f2
         con = db_conexao()
         cursor = con.cursor()
         try:

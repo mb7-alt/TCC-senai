@@ -1,13 +1,20 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+=======
+import React, { useState } from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { NavigationContainer } from '@react-navigation/native';
+>>>>>>> 449e082883ed487d46ad571dab8210613b1942f2
 import { Login } from './Telas/Login';
 import { AppTabs } from './Telas/AppTabs';
 
 export default function App() {
   const [logado, setLogado] = useState(false);
+<<<<<<< HEAD
   const [verificandoSessao, setVerificandoSessao] = useState(true);
 
   useEffect(() => {
@@ -41,11 +48,20 @@ export default function App() {
       <StatusBar style="dark" />
       {logado ? (
         <AppTabs onLogout={() => setLogado(false)} />
+=======
+
+  return (
+    <NavigationContainer>
+      <StatusBar style="auto" />
+      {logado ? (
+        <AppTabs />
+>>>>>>> 449e082883ed487d46ad571dab8210613b1942f2
       ) : (
         <Login onLoginSuccess={() => setLogado(true)} />
       )}
     </NavigationContainer>
   );
+<<<<<<< HEAD
 }
 
 const styles = StyleSheet.create({
@@ -56,3 +72,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+=======
+}
+>>>>>>> 449e082883ed487d46ad571dab8210613b1942f2

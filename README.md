@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🛠️ Sistema Integrado de Almoxarifado - SENAI Paraná
 
 > **Trabalho de Conclusão de Curso (TCC) - SENAI / Sistema FIEP**  
@@ -447,3 +448,44 @@ pip install -r requirements.txt
 - Na tela de login do app, use o botão de configuração para digitar o IP do computador na rede local (ex: `http://192.168.0.10:5000/api`).
 
 ---
+=======
+--USO NORMAL DO SITE NA WEB--
+
+1. Instalação das bibliotecas necessárias no vscode:
+pip install -r requirements.txt
+
+2. Iniciar o serviço "wampmysqld64" do Windows
+3. Abrir o "mysql workbench" e colar os códigos do arquivo "Almoxarifado.sql"
+4. Iniciar o "app.py"
+5. Pegar o link e colar no navegador
+
+--USO DO ALMOXARIFADO NO CELULAR--
+
+1. Entrar na pasta "mobile":
+cd mobile
+
+2. Instalar o "node_modules" (github n tanka o node modules aparentemente):
+npm install expo
+
+3. Expor vulnerabilidades (do expo):
+npm audit fix 
+
+4. Iniciar o expo go:
+npx expo start
+
+5. Usar o QR CODE ou URL no celular para acessar o site
+
+--USO DO CONTAINER DOCKER (FAÇA ISSO TODO DIA, RODE ESSES COMANDOS TODO SANTO DIA)--
+
+1. Abra o docker desktop
+2. Criação da imagem docker:
+docker build -t flask-almox:1.0 .
+
+3. Upload da imagem:
+docker compose up
+
+--ATENÇÃO--
+
+##Verificar se está na porta correta para uso do site, 3307 ou 3306 (boa sorte, campeão)##
+Com o docker, a gente meio que inutilizou o uso do mysql workbench, fazer oq né
+>>>>>>> 449e082883ed487d46ad571dab8210613b1942f2

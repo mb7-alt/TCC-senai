@@ -1,4 +1,5 @@
 FROM python:3.11-slim
+<<<<<<< HEAD
 
 WORKDIR /app
 
@@ -11,4 +12,9 @@ COPY . .
 
 EXPOSE 5000
 
+=======
+WORKDIR /app
+COPY . .
+RUN pip install -r requirements.txt
+>>>>>>> 449e082883ed487d46ad571dab8210613b1942f2
 CMD ["python", "app.py"]
