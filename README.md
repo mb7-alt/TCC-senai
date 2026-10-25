@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-# 🛠️ Sistema Integrado de Almoxarifado - SENAI Paraná
+#  Sistema Integrado de Almoxarifado - SENAI Paraná
 
 > **Trabalho de Conclusão de Curso (TCC) - SENAI / Sistema FIEP**  
 > Plataforma unificada de gestão de estoque, controle de ferramentas e materiais com suporte a **Painel Web Responsivo**, **Aplicativo Mobile (React Native / Expo)** e **API REST com Autenticação Híbrida (Sessão Web + JWT Bearer)**.
@@ -21,7 +21,7 @@
 
 ---
 
-## 📖 Visão Geral do Projeto
+##  Visão Geral do Projeto
 
 O **Almoxarifado SENAI** foi projetado para modernizar o controle de entrada, saída, empréstimo e devolução de ferramentas manuais, elétricas, instrumentos de medição e EPIs utilizados em oficinas e salas de aula práticas.
 
@@ -127,7 +127,7 @@ TCC-senai/
 
 ---
 
-## 👥 Contas de Acesso Padrão (Demo)
+##  Contas de Acesso Padrão (Demo)
 
 O banco já vem pré-configurado com dois perfis para teste imediato:
 
@@ -136,11 +136,11 @@ O banco já vem pré-configurado com dois perfis para teste imediato:
 | **`ednaldo@gmail.com`** | `123456` | **Administrador** | Acesso irrestrito: cadastrar ferramentas, editar itens existentes, excluir itens, registrar movimentações e gerenciar usuários. |
 | **`mauricio@gmail.com`** | `123456` | **Comum (Operador)** | Acesso operacional: visualização do catálogo, busca/filtros e registro de entradas/saídas de materiais. |
 
-> 💡 **Facilidade na Tela de Login:** Na tela inicial de login, há botões rápidos que preenchem automaticamente o e-mail e a senha do Administrador ou do Operador com apenas um clique!
+>  **Facilidade na Tela de Login:** Na tela inicial de login, há botões rápidos que preenchem automaticamente o e-mail e a senha do Administrador ou do Operador com apenas um clique!
 
 ---
 
-## 💻 Pré-requisitos do Sistema
+##  Pré-requisitos do Sistema
 
 1. **Python:** Versão 3.10 ou superior ([Download Python](https://www.python.org/downloads/)).
 2. **Banco de Dados:** Qualquer uma das opções abaixo:
@@ -151,7 +151,7 @@ O banco já vem pré-configurado com dois perfis para teste imediato:
 
 ---
 
-## 🚀 Passo a Passo: Como Rodar o Backend & Web Localmente
+##  Passo a Passo: Como Rodar o Backend & Web Localmente
 
 ### Passo 1: Abrir o Terminal na Pasta do Projeto
 ```powershell
@@ -182,7 +182,7 @@ python app.py
 
 ---
 
-## 🐳 Passo a Passo: Como Rodar via Docker Compose
+##  Passo a Passo: Como Rodar via Docker Compose
 
 Se você possui o **Docker Desktop** instalado, pode rodar o banco de dados MySQL e o backend Flask de forma totalmente isolada em apenas um comando:
 
@@ -207,7 +207,7 @@ docker compose down
 
 ---
 
-## 📱 Passo a Passo: Como Rodar o Aplicativo Mobile (Expo)
+##  Passo a Passo: Como Rodar o Aplicativo Mobile (Expo)
 
 O aplicativo móvel foi desenvolvido em **React Native** com **Expo**, permitindo testar diretamente no seu smartphone Android/iOS ou em emuladores.
 
@@ -230,7 +230,7 @@ npx expo start
 - **No emulador Android:** Pressione a tecla `a` no terminal.
 - **No navegador (modo web):** Pressione a tecla `w` no terminal.
 
-### 🌐 Conectando o Celular ao Computador (Dica de Ouro):
+###  Conectando o Celular ao Computador (Dica de Ouro):
 Para que o celular consiga conversar com a API rodando no computador:
 1. Abra o Prompt de Comando e digite `ipconfig` para descobrir o IP local da sua máquina (ex: `192.168.1.105`).
 2. Abra o app no celular, vá até a tela de login e toque no botão **"⚙️ Configurar IP do Servidor"**.
@@ -240,7 +240,7 @@ Para que o celular consiga conversar com a API rodando no computador:
 
 ---
 
-## 🖥️ Funcionalidades e Telas do Sistema
+##  Funcionalidades e Telas do Sistema
 
 ### 1. Tela de Login (`/login`)
 - Autenticação com credenciais institucionais e senha com criptografia **Bcrypt**.
@@ -278,7 +278,7 @@ Para que o celular consiga conversar com a API rodando no computador:
 
 ---
 
-## 📡 Documentação Completa da API REST
+##  Documentação Completa da API REST
 
 A API do Almoxarifado opera sob o prefixo `/api` e retorna respostas em formato **JSON**.
 
@@ -290,7 +290,7 @@ A API do Almoxarifado opera sob o prefixo `/api` e retorna respostas em formato 
 
 ---
 
-### 🔑 Autenticação
+###  Autenticação
 
 #### 1. Fazer Login
 - **Rota:** `POST /api/login`
@@ -405,7 +405,7 @@ A API do Almoxarifado opera sob o prefixo `/api` e retorna respostas em formato 
 
 ---
 
-### 👤 Gerenciamento de Usuários
+###  Gerenciamento de Usuários
 
 #### 12. Listar Usuários *(Admin)*
 - **Rota:** `GET /api/usuarios`
