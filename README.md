@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 #  Sistema Integrado de Almoxarifado - SENAI Paraná
 
 > **Trabalho de Conclusão de Curso (TCC) - SENAI / Sistema FIEP**  
