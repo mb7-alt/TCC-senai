@@ -1,7 +1,129 @@
-/*==========================================================================================
-CSS da página de login
-==========================================================================================*/
+/* ==========================================================================
+   ALMOXARIFADO SENAI - ESTILOS GLOBAIS E RESPONSIVOS
+   Cores Oficiais:
+   - Azul SENAI: #192a6b / #023472
+   - Laranja / Destaque: #ff9500
+   - Fundos e Acentos: #e2f4f7 / #f8f9fa
+   ========================================================================== */
 
+:root {
+    --senai-blue-primary: #192a6b;
+    --senai-blue-dark: #0f1c4d;
+    --senai-orange: #ff9500;
+    --senai-orange-hover: #e08300;
+    --senai-light-blue: #e2f4f7;
+    --senai-gray-border: #dee2e6;
+}
+
+body.body-padrao {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: #212529;
+    background-color: #f4f6f9;
+}
+
+/* --- Topo Institucional FIEP / SENAI --- */
+.barra-institucional {
+    background-color: #0b1a4a;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+}
+
+.badge-senai {
+    background-color: #ff9500;
+    color: #0b1a4a !important;
+    font-size: 0.7rem;
+}
+
+.badge-marca {
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.2s;
+}
+
+.badge-marca.active {
+    color: #ffffff;
+}
+
+/* --- Navbar Almoxarifado --- */
+.navbar-senai {
+    background-color: var(--senai-blue-primary) !important;
+}
+
+.navbar-senai .nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-weight: 500;
+    padding: 0.5rem 0.9rem !important;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.navbar-senai .nav-link:hover,
+.navbar-senai .nav-link.active {
+    color: #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+.img-logo-almox {
+    filter: brightness(0) invert(1);
+}
+
+.badge-perfil {
+    font-size: 0.65rem;
+    padding: 2px 6px;
+    text-transform: uppercase;
+}
+
+/* --- Cards de Métricas --- */
+.card-metrica {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-metrica:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08) !important;
+}
+
+.icone-metrica {
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- Tabela do Almoxarifado --- */
+.table-senai-header th {
+    background-color: var(--senai-blue-primary);
+    color: #ffffff;
+    font-weight: 600;
+    border: none;
+    padding: 12px 14px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.thumb-tabela {
+    width: 44px;
+    height: 44px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.thumb-tabela:hover {
+    transform: scale(1.15);
+}
+
+.thumb-placeholder {
+    width: 44px;
+    height: 44px;
+}
+
+.linha-alerta {
+    background-color: rgba(220, 53, 69, 0.04) !important;
+}
+
+/* --- Página de Login --- */
 .corpo-login {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
@@ -11,607 +133,82 @@ CSS da página de login
     margin: 0;
     background: linear-gradient(
         to bottom, 
-        rgba(26, 42, 108, 0.8),   
-        rgba(244, 162, 97, 0.6)   
+        rgba(26, 42, 108, 0.85),   
+        rgba(244, 162, 97, 0.7)   
     ), 
     url('fundo.jpg');
     background-size: cover;        
     background-position: center;    
     background-repeat: no-repeat;   
-    background-attachment: fixed;   
+    background-attachment: fixed;
+    padding: 20px;
 }
 
 .container-login {
     width: 100%;
-    max-width: 400px;
-    padding: 20px;
-    text-align: center;
+    max-width: 430px;
 }
 
-.botao {
-    width: 100%;
-    padding: 4%;
-    background-color: #ff9500;
-    color: rgb(53, 52, 52);
-    border: none;
-    border-radius: 15px;
-    font-weight: bold;
-    cursor: pointer;
+.card-login-wrapper {
+    background: rgba(15, 28, 77, 0.78);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-#fundo {
-    height: 100%;
-    width: 50%;
-    position: absolute;
-    top: 0px;
-    mask-image: linear-gradient(to left, transparent 5%, rgb(72, 92, 129) 50%);
-}
-
-#imagem-tabela {
-    max-width: 100% ;
-    max-height: 60vh;
-    object-fit: contain;
-    margin: 20px auto;
-}
-
-#logo  {
+#logo {
     display: block;
-    margin: 0 auto 30px auto;
-    width: 250px;
+    margin: 0 auto;
+    width: 220px;
     height: auto;
-    filter: brightness(0) invert(1); 
+    filter: brightness(0) invert(1);
 }
 
 .input-customizado {
-    background-color: rgb(226, 244, 247);
+    background-color: rgba(255, 255, 255, 0.95);
     border: 2px solid #6a859e;
-    border-radius: 10px;    
-    padding: 12px 15px;     
-    font-size: 16px;
-    color: #333333;
-    transition: all 0.3s ease;
+    border-radius: 8px;    
+    padding: 11px 14px;     
+    font-size: 15px;
 }
 
 .input-customizado:focus {
-    background-color: #ffffff !important;
-    border-color: #ff9500 !important;   
-    box-shadow: 0 0 8px rgba(255, 149, 0, 0.4) !important; 
-    outline: none !important;
+    background-color: #ffffff;
+    border-color: var(--senai-orange);
+    box-shadow: 0 0 0 0.25rem rgba(255, 149, 0, 0.25);
 }
 
 .label-customizada {
-    display: block;
-    text-align: left;
+    font-size: 0.85rem;
     font-weight: 600;
-    font-size: 15px;
-    color: #ffffff !important;
-    margin-bottom: 8px;
+    color: #ffffff;
+    margin-bottom: 6px;
 }
 
-.texto-check {
-    font-size: 14px;
-    color: #ffffff !important;
+.botao {
+    background-color: var(--senai-orange);
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    transition: background-color 0.2s, transform 0.1s;
 }
 
-/*==========================================================================================
-CSS da página de login incorreta
-==========================================================================================*/
+.botao:hover {
+    background-color: var(--senai-orange-hover);
+    transform: translateY(-1px);
+}
 
-@keyframes mudarcor-input {
-    0% {
-        background-color: #f4d7d7;
-        border-color: #ff0000;
+/* Responsividade Mobile para Tabelas e Formulários */
+@media (max-width: 768px) {
+    .barra-institucional {
+        font-size: 0.65rem;
     }
-    100% {
-        background-color: rgb(226, 244, 247);
-        border-color: #6a859e;
+    
+    .table-senai-header th {
+        font-size: 0.75rem;
+        padding: 8px 10px;
     }
-}
 
-#incorreto-email, #incorreto-senha { 
-    animation: mudarcor-input 10s ease;
-}
-
-#incorreto:focus {
-    background-color: #ffffff !important;
-    border-color: #ff9500 !important;   
-    box-shadow: 0 0 8px rgba(255, 149, 0, 0.4) !important; 
-    outline: none !important;
-}
-
-/*==========================================================================================
-CSS da Navbar padrão das páginas
-==========================================================================================*/
-
-.body-padrao {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.d-flex {
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-header {
-    background-color: #8eadc5;
-    margin-bottom: -40px;
-    margin-top: -40px;
-}
-
-nav {
-    font-size: larger;
-}
-
-#links-do-cabecalho{
-    margin-left: 100px;
-    display: flex;
-    flex: 1;
-    align-items: center;
-}
-
-#links-sistemicos{
-    width: 50%;
-    margin-left: 100px;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.barra-sistemica__item {
-    color:#192a6b;
-    margin-left: 25px;
-    font-weight: bold;
-    text-decoration: none !important;
-}
-
-.navbar.home-nav {
-    background-color:#192a6b !important;
-    font-size: larger;
-}
-
-.navbar-nav .nav-item  .nav-link {
-    margin-left: 20px;
-    margin-right: 20px;
-    font-size: larger;
-    color: #ffffff !important;
-    font-weight: bold;
-}
-
-.navbar-nav .nav-item-titulo {
-    margin-left: 20px;
-    margin-right: 20px;
-    color: #ffffff;
-    font-weight: bold;
-    margin-right: 100px;
-}
-
-#imagem-almoxarifado {
-    filter: invert(100%);
-    scale: 140%;
-}
-
-/*==========================================================================================
-CSS das tabelas do home e admin
-==========================================================================================*/
-
-#procurar {
-    background-color: #f3d09e ;
-    border-color: #ff9500;
-    color: #ff9500;
-}
-
-.tabela {
-    width: 70%;
-    align-items: center;
-    justify-content: center;
-    margin-left: auto;
-    margin-right: auto;
-    border: 4px solid #192a6b;
-    border-collapse: separate;
-    border-spacing: 0;
-    border-radius: 20px;
-    overflow: hidden;
-}
-
-.tabela th, 
-.tabela td {
-  padding: 12px 15px;
-  text-align: left;
-}
-
-.tabela thead {
-  background-color: #192a6b;
-  color: #ffffff;
-  font-weight: bold;
-}
-
-.tabela tbody tr:nth-of-type(odd) {
-  background-color: #f3f3f3;
-}
-
-.tabela tbody tr:hover {
-  background-color: #cad4f7;
-}
-
-
-#botao-imagem {
-    background-color: #192a6b;
-    border-radius: 20px;
-    padding: 20%;
-}
-
-.Imagem-botao {
-    background-color: #192a6b;
-    color: #ffffff;
-    border: 2px solid #192a6b;
-    border-radius: 10px;
-    padding: 50%;
-}
-
-.Imagem-popup {
-    border: 2px solid #192a6b; 
-}
-
-.Imagem-tabela {
-    max-height: 400px;
-}
-
-/*==========================================================================================
-CSS do controle de itens
-==========================================================================================*/
-
-.painel-controle {
-    width: 60%;
-    margin: auto;
-    border: 3px solid #192a6b;
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: white;
-}
-
-.cabecalho-painel {
-    background-color: #192a6b;
-    color: white;
-    padding: 15px;
-}
-
-.busca-item {
-    padding: 20px;
-    display: flex;
-    gap: 10px;
-}
-
-.busca-item input {
-    flex: 1;
-    padding: 12px;
-    border: 2px solid #192a6b;
-    border-radius: 5px;
-}
-
-#btnBuscar {
-    background-color: #ff9500;
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-#detalhesItem {
-    display: flexbox;
-    padding: 20px;
-}
-
-#detalhesItem.ativo {
-    max-height: 2000px !important;
-    padding: 20px !important;
-}
-
-.campo {
-    margin-bottom: 20px;
-}
-
-.campo label {
-    display: block;
-    margin-bottom: 8px;
-    color: #192a6b;
-    font-weight: bold;
-}
-
-.campo input {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #192a6b;
-    border-radius: 5px;
-}
-
-.controle-quantidade {
-    display: flex;
-    gap: 10px;
-}
-
-.controle-quantidade input {
-    flex: 1;
-}
-
-.btnMais,
-.btnMenos {
-    width: 60px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.btnMais {
-    background-color: #192a6b;
-}
-
-.btnMenos {
-    background-color: #ff9500;
-}
-
-.btnVoltar {
-    float: right;
-    background-color: #ff9500;
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 5px;
-    margin-top: 10px;
-}
-
-#tabelaHistorico {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
-#tabelaHistorico th,
-#tabelaHistorico td {
-    border: 1px solid #192a6b;
-    padding: 8px;
-    text-align: left;
-}
-
-#tabelaHistorico thead {
-    background-color: #192a6b;
-    color: white;
-}
-
-#tabelaHistorico {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    max-height: 250px;
-    overflow-y: auto;
-    display: block;
-}
-
-#btnMovimentar {
-    display: block;
-    width: fit-content;
-    margin-left: auto;
-
-    background-color: #192a6b;
-    color: white;
-
-    border: none;
-    padding: 12px 25px;
-    border-radius: 5px;
-
-    font-weight: bold;
-    cursor: pointer;
-
-    transition: 0.2s ease;
-}
-
-#btnMovimentar:hover {
-    background-color: #0f1c4d;
-}
-
-/*==========================================================================================
-CSS utilizado como base do cadastro de usário, cadastro de ferramentas e controle de itens
-==========================================================================================*/
-
-label {
-    font-weight: bold;
-}
-
-select,
-input,
-textarea {
-    width: 100%;
-    padding: 12px;
-    margin-top: 8px;
-    margin-bottom: 20px;
-    border: 2px solid #192a6b;
-    border-radius: 8px;
-    box-sizing: border-box;
-    font-size: 15px;
-}
-
-textarea {
-    height: 80px;
-    resize: none;
-}
-
-input[type=number] {
-  -moz-appearance: textfield;
-}
-
-/*==========================================================================================
-CSS do cadastro de ferramenta
-==========================================================================================*/
-
-#form-cadastro {
-    background-color: white;
-    border-radius: 15px;
-    border: 4px solid #192a6b;
-    box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
-    display: flexbox;
-    align-items: center;
-    justify-content: center;
-    margin-top: 2%;
-    margin-left: 30%;
-    margin-right: 30%;
-    margin-bottom: 1%;
-}
-
-#Cad {
-    color: #ffffff;
-    text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 40px;
-    background-color: #192a6b;
-    padding-bottom: 1%;
-}
-
-.item-cad {
-    margin-bottom: 1%;
-    margin-left: 1%;
-    margin-right: 1%;
-}
-
-
-#botao-cad {
-    width: 98%;
-    background-color: #ff9500;
-    color: white;
-    padding: 15px;
-    border: none;
-    border-radius: 8px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-    margin-top: 2%;
-    margin-left: 1%;
-    margin-right: 1%;
-    margin-bottom: 1%;
-}
-
-#botao-cad:hover {
-    background-color: #ffb144;
-}
-
-/*==========================================================================================
-CSS do cadastro de usuários
-==========================================================================================*/
-
-#form-cadastro-user {
-    background-color: white;
-    border-radius: 15px;
-    border: 4px solid #192a6b;
-    box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
-    display: flexbox;
-    align-items: center;
-    justify-content: center;
-    margin-top: 8%;
-    margin-left: 30%;
-    margin-right: 30%;
-}
-
-#Cad-user {
-    color: #ffffff;
-    text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 40px;
-    background-color: #192a6b;
-    padding-bottom: 1%;
-}
-
-.item-cad-user {
-    margin-bottom: 3%;
-    margin-left: 1%;
-    margin-right: 1%;
-    margin-top: 2%;
-}
-
-#botao-cad-user {
-    width: 98%;
-    background-color: #ff9500;
-    color: white;
-    padding: 15px;
-    border: none;
-    border-radius: 8px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-    margin-left: 1%;
-    margin-right: 1%;
-    margin-top: 2%;
-    margin-bottom: 1%;
-}
-
-#botao-cad-user:hover {
-    background-color: #ffb144;
-}
-
-/*==========================================================================================
-CSS do controle de itens
-==========================================================================================*/
-
-.painel-controle {
-    margin-bottom: 1%;
-}
-
-.cabecalho-painel {
-    padding-bottom: 10px;
-    padding-top: 10px;
-}
-
-/*==========================================================================================
-CSS das páginas de sucesso
-==========================================================================================*/
-
-.corpo-sucesso {
-    background-color: #ffffff;
-    display: flexbox;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.botao-sucesso-voltar {
-    background-color: #ff9500;
-    border: 4px solid #0f1c4d;
-    box-shadow: 2px 2px 2px #030e36;
-    font-size: larger;
-    font-weight: bold;
-    color: #f3f3f3;
-    border-radius: 20px;
-    width: 400px;
-    height: 100px;
-    margin-left: 16%;
-    cursor: pointer;
-
-}
-
-.link-sucesso {
-    text-decoration: none;
-}
-
-#logo-sucesso {
-    position: absolute;
-    width: 200px;
-    height: auto;
-    bottom: 4%;
-    right: 3%;
-}
-
-#h1-sucesso {
-    margin-left: 27%;
-    margin-top: 7%;
-    margin-bottom: 10%;
-    font-size: 60px;
-}
-
-#h1-sucesso-2 {
-    margin-left: 25%;
-    margin-top: 7%;
-    margin-bottom: 10%;
-    font-size: 60px;
+    .card-metrica {
+        margin-bottom: 0.5rem;
+    }
 }
