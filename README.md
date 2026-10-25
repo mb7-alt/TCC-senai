@@ -1,9 +1,8 @@
 
 #  Sistema Integrado de Almoxarifado - SENAI Paraná
 
-> **Trabalho de Conclusão de Curso (TCC) - SENAI / Sistema FIEP**  
-> Plataforma unificada de gestão de estoque, controle de ferramentas e materiais com suporte a **Painel Web Responsivo**, **Aplicativo Mobile (React Native / Expo)** e **API REST com Autenticação Híbrida (Sessão Web + JWT Bearer)**.
-
+> **Trabalho de Conclusão de Curso (TCC) - SENAI / Sistema FIEP**
+> 
 ---
 
 ##  Sumário
