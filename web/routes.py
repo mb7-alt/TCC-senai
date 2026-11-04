@@ -107,7 +107,7 @@ def api_buscar_item(id_item):
             return jsonify({'erro': 'Item não encontrado'}), 404     
 
         cursor.execute(
-            "SELECT tipo, pessoa, destino, DATE_FORMAT(data, '%d/%m/%Y %H:%i') as data FROM historico WHERE id_item = %s ORDER BY data DESC", 
+            "SELECT tipo, pessoa, destino, DATE_FORMAT(data - INTERVAL 3 HOUR, '%d/%m/%Y %H:%i') as data FROM historico WHERE id_item = %s ORDER BY data DESC", 
             (id_item,)
         )
         historico = cursor.fetchall()

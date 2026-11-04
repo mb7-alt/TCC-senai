@@ -8,7 +8,7 @@ export function Movimento() {
   const [id, setId] = useState('');
   const [nome, setNome] = useState('');
   const [quantidade, setQuantidade] = useState('');
-  const [estoqueMin, setEstoqueMin] = useState('');
+  const [estoqueMin, setEstoqueMin] = useState('xx');
   
   // Campos referentes à movimentação/histórico
   const [pessoa, setPessoa] = useState('');
@@ -22,7 +22,7 @@ export function Movimento() {
     try {
       const token = await AsyncStorage.getItem('userToken');
 
-      const resposta = await fetch(`http://10.154.20.226:5000/api/item/${itemId}`, {
+      const resposta = await fetch(`http://10.154.20.83:5000/api/item/${itemId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ export function Movimento() {
     try {
       const token = await AsyncStorage.getItem('userToken');
 
-      const resposta = await fetch('http://10.154.20.34:5000/api/movimentar', {
+      const resposta = await fetch('http://10.154.20.83:5000/api/movimentar', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -124,14 +124,7 @@ export function Movimento() {
         keyboardType="numeric"
       />
 
-      <TextInput
-        style={styles.texto}
-        placeholder="Estoque Mínimo"
-        value={estoqueMin}
-        onChangeText={setEstoqueMin}
-        keyboardType="numeric"
-        editable={false}
-      />
+      <Text style={styles.texto2}>Estoque mínimo: {estoqueMin} </Text>
 
       <TextInput
         style={styles.texto}
@@ -207,6 +200,15 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     alignSelf: 'center',
   },
+
+  texto2: {
+    color: '#192a6b',
+    fontWeight: 'bold',
+    marginTop: -7,
+    marginLeft: 55,
+    marginBottom: 5,
+  },
+
   dados: {
     width: 200,
     height: 50,
