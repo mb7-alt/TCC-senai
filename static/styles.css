@@ -417,6 +417,7 @@ CSS utilizado como base do cadastro de usário, cadastro de ferramentas e contro
 
 label {
     font-weight: bold;
+    color: #000;
 }
 
 select,

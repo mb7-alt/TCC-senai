@@ -13,7 +13,12 @@ export function Movimento() {
   // Campos referentes à movimentação/histórico
   const [pessoa, setPessoa] = useState('');
   const [destino, setDestino] = useState('');
-  const [tipo, setTipo] = useState('');
+  const [tipo, setTipo] = useState<string>('Saída');
+
+  const options = [
+    { label: 'Saída', value: 'Saída' },
+    { label: 'Entrada', value: 'Entrada' },
+  ];
 
   // Função para buscar os dados do item com base no ID digitado
   const buscarItemPorId = async (itemId: string) => {
@@ -140,12 +145,24 @@ export function Movimento() {
         onChangeText={setDestino}
       />
 
-      <TextInput
-        style={styles.texto}
-        placeholder="Tipo (Ex: Saída / Entrada)"
-        value={tipo}
-        onChangeText={setTipo}
-      />
+      <Text style={styles.texto3}>Tipo de movimentação:</Text>
+      <View style={styles.opcoes}>
+        {options.map((item) => {
+          const isSelected = tipo === item.value;
+          return (
+            <TouchableOpacity
+              key={item.value}
+              style={styles.radioButtonContainer}
+              onPress={() => setTipo(item.value)}
+            >
+              <View style={styles.radioOuter}>
+                {isSelected && <View style={styles.radioInner} />}
+              </View>
+              <Text style={styles.label}>{item.label}</Text>
+            </TouchableOpacity>
+          );
+        })}
+      </View>
 
       <TouchableOpacity style={styles.dados} onPress={EnviarDadosMov}>
         <Text style={styles.dadinhos}>Atualizar</Text>
@@ -200,7 +217,6 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     alignSelf: 'center',
   },
-
   texto2: {
     color: '#192a6b',
     fontWeight: 'bold',
@@ -208,7 +224,11 @@ const styles = StyleSheet.create({
     marginLeft: 55,
     marginBottom: 5,
   },
-
+  texto3: {
+    fontWeight: 'bold',
+    marginLeft: 100,
+    marginBottom: 5
+  },
   dados: {
     width: 200,
     height: 50,
@@ -217,6 +237,34 @@ const styles = StyleSheet.create({
     marginTop: 10,
     alignSelf: 'center',
     justifyContent: 'center',
+  },
+  opcoes: {
+    flexDirection: 'row',
+  },
+  radioButtonContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+    marginLeft: 75,
+    marginRight: 10,
+  },
+  radioOuter: {
+    height: 20,
+    width: 20,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: '#192a6b',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  radioInner: {
+    height: 10,
+    width: 10,
+    borderRadius: 5,
+    backgroundColor: '#192a6b',
+  },
+  label: {
+    fontSize: 16,
   },
   dadinhos: {
     color: '#fff',
