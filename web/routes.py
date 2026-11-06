@@ -1,8 +1,9 @@
-from flask import Blueprint, render_template, redirect, request, session, url_for, jsonify
-import bcrypt
-from functools import wraps
-from database import db_conexao
+from flask import Blueprint, render_template, redirect, request, session, url_for, jsonify # Import do Flask utilizado no "esqueleto" da aplicação
+import bcrypt # Biblioteca que serve para codificar dados importantes
+from functools import wraps # Módulo que cria um decorador de informações para as funções do login
+from database import db_conexao # Import da conexão do database.py
 
+# Criação da base das Blueprints de web enviadas para o app.py
 web_bp = Blueprint('web', __name__)
 
 # Decorator de login para a WEB

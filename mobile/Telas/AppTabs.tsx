@@ -1,3 +1,4 @@
+// AQUI É ONDE NÓS CRIAMOS A NAVBAR DO APP, COM ESTILIZAÇÃO E TALS
 import { useState, useEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Home } from './Home';
@@ -8,7 +9,6 @@ import { Movimento } from './Movimentar';
 import { Adicionar } from './Itens';
 import { RouteProp, ParamListBase } from '@react-navigation/native';
 
-// AQUI É ONDE A GNT MEXE NA NAVBAR DO APP, ESTILIZAÇÃO E TALS
 const Tab = createBottomTabNavigator();
 
 const tabNavigatorOptions = ({ route }: { route: RouteProp<ParamListBase, string> }) => ({

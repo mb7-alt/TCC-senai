@@ -1,5 +1,6 @@
+# CRIAÇÃO DA IMAGEM DOCKER. EM QUAL PORTA FICA, SENHA, DATABASAE, ETC
 services:
-
+  # Serviço da API
   api:
     image: flask-almox:1.0
     build: .
@@ -8,6 +9,7 @@ services:
     depends_on:
     - db
 
+  # Serviço do banco SQL
   db:
     image: mysql:8.0
     container_name: mysql_server

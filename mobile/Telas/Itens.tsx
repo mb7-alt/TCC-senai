@@ -1,8 +1,9 @@
+// PÁGINA DE ADIÇÃO DE ITENS
 import { useState, useEffect } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// AQUI DEFINE OS TIPOS DE CADA ELEMENTO DA TABELA. NÚMEROS, NOMES, ETC
+// aqui define os tipos de cada elemento da tabela. números, nomes, etc
 interface ItemProduto {
   id: number;
   nome: string;
@@ -13,7 +14,7 @@ interface ItemProduto {
   descricao: string
 }
 
-// AQUI ELE EMPURRA OS DADOS PRO BANCO PARA PREENCHER A TABELA COM O NOVO ITEM, RECONHECENDO O USUÁRIO COM O "userToken"
+// aqui ele empurra os dados pro banco para preencher a tabela com o novo item, reconhecendo o usuário com o "usertoken"
 export function Adicionar() { 
   const [nome, setNome] = useState('');
   const [quantidade, setQuantidade] = useState('');

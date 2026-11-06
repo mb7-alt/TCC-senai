@@ -1,8 +1,9 @@
+// PÁGINA DE MOVIMENTAÇÃO DO EXPO
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// AQUI ELE VAI PUXAR OS DADOS DO ITEM QUE TU COLOCOU O ID, VAI PREENCHER OS CAMPOS AUTOMÁTICOS E PERMITIR QUE VC PREENCHA OS OUTROS, DAÍ VAI ENVIAR OS NOVOS DADOS PRO BANCO
+// aqui ele vai puxar os dados do item que tu colocou o id, vai preencher os campos automáticos e permitir o preenchimento dos outros, e depois enviar os novos dados
 export function Movimento() {
   // Campos referentes aos dados do item
   const [id, setId] = useState('');

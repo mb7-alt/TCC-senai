@@ -1,11 +1,13 @@
-from flask import Blueprint, request, jsonify
-from flask_jwt_extended import create_access_token, jwt_required, get_jwt
-import bcrypt
-from database import db_conexao
+from flask import Blueprint, request, jsonify # Import do Flask utilizado no "esqueleto" da aplicação
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt # Biblioteca para gestão de tokens e proteção/autenticação de rotas
+import bcrypt # Biblioteca que serve para codificar dados importantes
+from database import db_conexao # Import da conexão do database.py
 
+# Criação da base das Blueprints de API enviadas para o app.py
 api_bp = Blueprint('api', __name__, url_prefix='/api')
 
-# Decorator para perfil admin na API
+# Decorator de perfil para a API. 
+# OBS: desta vez o functools.wraps não foi utilizado, mas podia ser usado
 def admin_api_required():
     def wrapper(fn):
         @jwt_required()
@@ -18,9 +20,11 @@ def admin_api_required():
         return decorator
     return wrapper
 
-# --- AUTENTICAÇÃO ---
+# --- PÁGINA DE LOGIN/AUTENTICAÇÃO ---
 
 @api_bp.route('/login', methods=['POST', 'GET'])
+
+
 def api_login():
     dados = request.get_json() or {}
     usuario_digitado = dados.get('email')
@@ -53,7 +57,7 @@ def api_login():
         cursor.close()
         conn.close()
 
-# --- ITENS E ESTOQUE ---
+# --- PÁGINA DE CHECAGEM DE ITENS E ESTOQUE ---
 
 @api_bp.route('/itens', methods=['GET'])
 @jwt_required()
@@ -97,7 +101,7 @@ def api_buscar_item(id_item):
         cursor.close()
         conexao.close()
 
-# --- MOVIMENTAÇÃO ---
+# --- PÁGINA DE MOVIMENTAÇÃO ---
 
 @api_bp.route('/movimentar', methods=['POST'])
 @jwt_required()

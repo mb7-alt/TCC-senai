@@ -1,3 +1,4 @@
+# CONEXÃO COM O BANCO DE DADOS DO DOCKER
 import mysql.connector
 
 def db_conexao():

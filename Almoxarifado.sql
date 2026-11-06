@@ -1,5 +1,6 @@
 SET NAMES utf8mb4;
 
+-- CRIAÇÃO DO BANCO
 DROP DATABASE IF EXISTS almoxarifado;
 CREATE DATABASE almoxarifado;
 USE almoxarifado;

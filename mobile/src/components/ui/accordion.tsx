@@ -1,3 +1,4 @@
+// ESSE "accordion.tsx" É UM ELEMENTO DE FRAMEWORK UTILIZADO NO EXPO, TIPO OS ALERTAS DO SITE, COISA BONITA
 import React, { useState } from "react";
 import {
   View,
@@ -8,7 +9,6 @@ import {
   ViewStyle,
 } from "react-native";
 
-// ESSE "accordion.tsx" É UM ELEMENTO DE FRAMEWORK, TIPO OS ALERTAS DO SITE, COISA BONITA
 interface AccordionItemProps {
   title: string;
   children: React.ReactNode;

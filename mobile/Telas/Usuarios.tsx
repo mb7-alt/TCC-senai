@@ -1,8 +1,9 @@
+// PÁGINA DE ADIÇÃO DE NOVOS USUÁRIOS
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// AQUI VAI REGISTRAR OS DADOS DO NOVO USUÁRIO QUE VC COLOCOU, DEPOIS ENVIÁ-LOS PRO BANCO
+// aqui vai registrar os dados do novo usuário que vc colocou, depois enviá-los pro banco
 export function Usuarios({ onAddSuccess }: { onAddSuccess?: () => void }) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');

@@ -1,9 +1,10 @@
+// PÁGINA DE HOME DO EXPO
 import { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Accordion, AccordionItem } from '../src/components/ui/accordion';
+import { Accordion, AccordionItem } from '../src/components/ui/accordion'; // Import do componente de "sanfona"
 
-// DEFINE A CATEGORIA DE CADA ELEMENTO DA TABELA, SE É NÚMERO, STRING, ETC
+// Define a categoria de cada elemento da tabela, se é número, string, ...
 interface ItemProduto {
   id: number;
   nome: string;

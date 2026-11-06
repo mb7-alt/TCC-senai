@@ -1,3 +1,4 @@
+// PÁGINA DE LOGIN DO USUÁRIO
 import { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -6,7 +7,7 @@ export function Login({ onLoginSuccess }: { onLoginSuccess: () => void }) {
   const [email, setItem] = useState('');
   const [senha, setQtde] = useState('');
 
-  // AQUI É ONDE PEGA INFORMAÇÃO NAS CAIXAS DE TEXTO E ENVIA PRA API, DAÍ ELA VÊ SE EXISTEM NO BANCO DE DADOS
+  // aqui é onde pega informação nas caixas de texto e envia pra api, daí ela vê se existem no banco de dados
   const enviarFormulario = async () => {
     try {
       const resposta = await fetch('http://10.154.20.83:5000/api/login', {

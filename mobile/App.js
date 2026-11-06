@@ -1,3 +1,4 @@
+// CRAÇÃO DO CAMINHO DAS TELAS PRO INDEX, COMO UM CENTRO DE COMUNICAÇÃO
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
