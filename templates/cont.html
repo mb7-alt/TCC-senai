@@ -138,7 +138,10 @@
         let quantidadeAtual = 0;
         let estoqueMin = 0;
         let tipoMovimentacao = '';
+
         document.addEventListener('DOMContentLoaded', function() {
+            const inputQuantidade = document.getElementById('quantidadeItem');
+
             document.getElementById('btnBuscar').addEventListener('click', function() {
                 const id = document.getElementById('idItem').value;
                 if (!id) {
@@ -155,10 +158,11 @@
                     .then(data => {
                         console.log("Dados recebidos do MySQL:", data);
                         document.getElementById('nomeItem').value = data.nome;
-                        document.getElementById('quantidadeItem').value = data.quantidade;
+                        inputQuantidade.value = data.quantidade;
                         quantidadeAtual = parseInt(data.quantidade);
                         estoqueMin = parseInt(data.estoque_min || 0);
                         tipoMovimentacao = '';
+                        
                         const painelDetalhes = document.getElementById('detalhesItem');
                         if (painelDetalhes) {
                             painelDetalhes.style.display = 'block';
@@ -186,43 +190,93 @@
                         Swal.fire('Erro', 'Item não encontrado no sistema.', 'error');
                     });
             });
-            document.querySelector('.btnMais').addEventListener('click', function () {
-                quantidadeAtual += 1;
-                document.getElementById('quantidadeItem').value = quantidadeAtual;
-                tipoMovimentacao = 'Entrada';
-            });
-            document.querySelector('.btnMenos').addEventListener('click', function () {
-                if ((quantidadeAtual - 1) < estoqueMin) {
-                    Swal.fire('Ação Negada', `A quantidade não pode ficar abaixo do estoque mínimo permitido (${estoqueMin}).`, 'warning');
-                    return;
-                }
-                if (quantidadeAtual > 0) {
-                    quantidadeAtual -= 1;
-                    document.getElementById('quantidadeItem').value = quantidadeAtual;
-                    tipoMovimentacao = 'Saída';
-                } else {
-                    Swal.fire('Aviso', 'A quantidade não pode ser menor que zero.', 'warning');
-                }
-            });
+
+            if (inputQuantidade) {
+                inputQuantidade.removeAttribute('readonly');
+                
+                inputQuantidade.addEventListener('input', function() {
+                    const novoValor = parseInt(inputQuantidade.value);
+
+                    if (isNaN(novoValor)) {
+                        tipoMovimentacao = '';
+                        return;
+                    }
+
+                    if (novoValor > quantidadeAtual) {
+                        tipoMovimentacao = 'Entrada';
+                    } else if (novoValor < quantidadeAtual) {
+                        if (novoValor < estoqueMin) {
+                            Swal.fire('Ação Negada', `A quantidade não pode ficar abaixo do estoque mínimo permitido (${estoqueMin}).`, 'warning');
+                            inputQuantidade.value = quantidadeAtual;
+                            tipoMovimentacao = '';
+                            return;
+                        }
+                        if (novoValor < 0) {
+                            Swal.fire('Aviso', 'A quantidade não pode ser menor que zero.', 'warning');
+                            inputQuantidade.value = quantidadeAtual;
+                            tipoMovimentacao = '';
+                            return;
+                        }
+                        tipoMovimentacao = 'Saída';
+                    } else {
+                        tipoMovimentacao = ''; 
+                    }
+                });
+            }
+
+            const btnMais = document.querySelector('.btnMais');
+            const btnMenos = document.querySelector('.btnMenos');
+
+            if (btnMais) {
+                btnMais.addEventListener('click', function () {
+                    let val = parseInt(inputQuantidade.value) || 0;
+                    val += 1;
+                    inputQuantidade.value = val;
+                    inputQuantidade.dispatchEvent(new Event('input'));
+                });
+            }
+
+            if (btnMenos) {
+                btnMenos.addEventListener('click', function () {
+                    let val = parseInt(inputQuantidade.value) || 0;
+                    if ((val - 1) < estoqueMin) {
+                        Swal.fire('Ação Negada', `A quantidade não pode ficar abaixo do estoque mínimo permitido (${estoqueMin}).`, 'warning');
+                        return;
+                    }
+                    if (val > 0) {
+                        val -= 1;
+                        inputQuantidade.value = val;
+                        inputQuantidade.dispatchEvent(new Event('input'));
+                    } else {
+                        Swal.fire('Aviso', 'A quantidade não pode ser menor que zero.', 'warning');
+                    }
+                });
+            }
+
             document.getElementById('btnMovimentar').addEventListener('click', function () {
                 const id = document.getElementById('idItem').value;
                 const pessoa = document.getElementById('pessoaMov').value;
                 const destino = document.getElementById('destinoMov').value;
-                if (!id || !pessoa || !destino || tipoMovimentacao === '') {
-                    Swal.fire('Aviso', 'Altere a quantidade e preencha todos os campos.', 'warning');
+                const quantidadeFinal = parseInt(inputQuantidade.value);
+
+                if (!id || !pessoa || !destino || tipoMovimentacao === '' || isNaN(quantidadeFinal)) {
+                    Swal.fire('Aviso', 'Altere a quantidade e preencha todos os campos corretamente.', 'warning');
                     return;
                 }
-                if (tipoMovimentacao === 'Saída' && quantidadeAtual < estoqueMin) {
+
+                if (tipoMovimentacao === 'Saída' && quantidadeFinal < estoqueMin) {
                     Swal.fire('Erro', 'A quantidade final é menor que o estoque mínimo.', 'error');
                     return;
                 }
+
                 const dadosMov = {
                     id: id,
-                    quantidade: quantidadeAtual,
+                    quantidade: quantidadeFinal,
                     pessoa: pessoa,
                     destino: destino,
                     tipo: tipoMovimentacao
                 };
+
                 fetch('/movimentar', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },

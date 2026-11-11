@@ -10,7 +10,7 @@ export function Login({ onLoginSuccess }: { onLoginSuccess: () => void }) {
   // aqui é onde pega informação nas caixas de texto e envia pra api, daí ela vê se existem no banco de dados
   const enviarFormulario = async () => {
     try {
-      const resposta = await fetch('http://10.154.20.83:5000/api/login', {
+      const resposta = await fetch('http://10.154.20.43:5000/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

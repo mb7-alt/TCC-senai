@@ -25,7 +25,7 @@ export function Home() {
     try {
       const token = await AsyncStorage.getItem('userToken');
 
-      const resposta = await fetch('http://10.154.20.83:5000/api/itens', {
+      const resposta = await fetch('http://10.154.20.43:5000/api/itens', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

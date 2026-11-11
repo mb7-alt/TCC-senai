@@ -28,7 +28,7 @@ export function Movimento() {
     try {
       const token = await AsyncStorage.getItem('userToken');
 
-      const resposta = await fetch(`http://10.154.20.83:5000/api/item/${itemId}`, {
+      const resposta = await fetch(`http://10.154.20.43:5000/api/item/${itemId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ export function Movimento() {
     try {
       const token = await AsyncStorage.getItem('userToken');
 
-      const resposta = await fetch('http://10.154.20.83:5000/api/movimentar', {
+      const resposta = await fetch('http://10.154.20.43:5000/api/movimentar', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
