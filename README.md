@@ -132,8 +132,8 @@ O banco já vem pré-configurado com dois perfis para teste imediato:
 
 | E-mail | Senha | Nível | Permissões no Sistema |
 |---|---|---|---|
-| **`ednaldo@gmail.com`** | `123456` | **Administrador** | Acesso irrestrito: cadastrar ferramentas, editar itens existentes, excluir itens, registrar movimentações e gerenciar usuários. |
-| **`mauricio@gmail.com`** | `123456` | **Comum (Operador)** | Acesso operacional: visualização do catálogo, busca/filtros e registro de entradas/saídas de materiais. |
+| **`ednaldo@gmail.com`** | `1234` | **Administrador** | Acesso irrestrito: cadastrar ferramentas, editar itens existentes, excluir itens, registrar movimentações e gerenciar usuários. |
+| **`mauricio@gmail.com`** | `comum` | **Comum (Operador)** | Acesso operacional: visualização do catálogo, busca/filtros e registro de entradas/saídas de materiais. |
 
 >  **Facilidade na Tela de Login:** Na tela inicial de login, há botões rápidos que preenchem automaticamente o e-mail e a senha do Administrador ou do Operador com apenas um clique!
 
@@ -297,7 +297,7 @@ A API do Almoxarifado opera sob o prefixo `/api` e retorna respostas em formato 
   ```json
   {
     "email": "ednaldo@gmail.com",
-    "senha": "123456"
+    "senha": "1234"
   }
   ```
 - **Resposta de Sucesso (200 OK):**
